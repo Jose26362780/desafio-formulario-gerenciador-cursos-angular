@@ -10,7 +10,7 @@ Use este checklist para acompanhar a entrega por fase, com prioridade e estimati
 
 - [x] Configurar projeto Angular e rodar a API
 - [x] Criar rotas da aplicação
-- [ ] Criar CourseService com métodos de comunicação com a API
+- [x] Criar CourseService com métodos de comunicação com a API
 
 ## Fase 2 - Estrutura de páginas
 
