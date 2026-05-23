@@ -47,6 +47,9 @@ src/
 │   │       ├── course-form-content/       # Formulário reutilizável
 │   │       └── modules-list/              # Lista de módulos e aulas
 │   │
+│   ├── environments/
+│   │   ├── environment.ts #Configuração de Ambiente
+│   │
 │   ├── app.ts
 │   ├── app.html
 │   ├── app.config.ts
@@ -56,12 +59,6 @@ src/
 ├── main.ts
 ├── index.html
 └── styles.css
-
-📦 Servidor da API
-├── angular-challenge-course-forms-server/
-│   ├── server.js                          # Servidor Node customizado
-│   ├── db.json                            # Base de dados JSON
-│   └── package.json
 
 📋 Arquivos de Configuração
 ├── angular.json
