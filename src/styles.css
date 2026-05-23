@@ -1,1 +1,199 @@
-/* You can add global styles to this file, and also import other style files */
+/* Global design tokens and base styles (generated from Figma MCP)
+	 Includes colors, typography, spacing tokens and base component styles
+*/
+@import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg-900: #0d0f12;
+  --surface-900: #151820;
+  --surface-800: #1c2029;
+  --surface-700: #232838;
+  --border: #2a3040;
+  --text-high: #e1e8f0;
+  --text-medium: #7c8da6;
+  --text-muted: #4a5568;
+  --primary: #00b37e;
+  --primary-2: #00e5ff;
+  --danger: #f75a68;
+  --white: #ffffff;
+
+  /* Transparent variants */
+  --primary-opaque-12: rgba(0, 179, 126, 0.12);
+  --primary-opaque-25: rgba(0, 179, 126, 0.25);
+  --primary-opaque-30: rgba(0, 179, 126, 0.3);
+
+  /* Typography */
+  --font-base: 'Rajdhani', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+  --h1-size: 32px;
+  --h2-size: 18px;
+  --h3-size: 24px;
+  --text-lg: 18px;
+  --text-md: 14px;
+  --text-sm: 12.8px;
+  --text-xs: 12px;
+
+  /* Spacing scale */
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 12px;
+  --space-lg: 16px;
+  --space-xl: 24px;
+  --space-xxl: 32px;
+
+  /* Radii */
+  --radius-lg: 14px;
+  --radius-md: 10px;
+  --radius-sm: 8px;
+  --radius-xs: 6px;
+
+  /* Component sizes (from design) */
+  --header-height: 69px;
+  --input-height: 49px;
+  --textarea-height: 94px;
+  --lesson-input-height: 39px;
+  --button-height: 43px;
+}
+
+/* Base layout */
+html,
+body {
+  height: 100%;
+  margin: 0;
+  background: var(--bg-900);
+  color: var(--text-high);
+  font-family: var(--font-base);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Container helpers */
+.app-container {
+  padding: 40px 392px 80px;
+}
+
+/* Headings */
+h1 {
+  font-weight: 700;
+  font-size: var(--h1-size);
+  line-height: 1;
+  color: var(--text-high);
+}
+
+h2 {
+  font-weight: 700;
+  font-size: var(--h2-size);
+  color: var(--text-high);
+}
+
+/* Inputs / Textareas */
+.input,
+input,
+textarea,
+.select {
+  background: var(--surface-900);
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+  border-radius: var(--radius-sm);
+  padding: 12px 16px;
+  height: var(--input-height);
+  box-sizing: border-box;
+  font-size: var(--text-md);
+}
+
+textarea,
+.textarea {
+  height: var(--textarea-height);
+  resize: vertical;
+}
+
+.input::placeholder,
+textarea::placeholder {
+  color: var(--text-muted);
+}
+
+/* Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: var(--button-height);
+  padding: 0 20px;
+  border-radius: var(--radius-xs);
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--text-medium);
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.btn-primary {
+  background: linear-gradient(90deg, var(--primary) 0%, var(--primary-2) 50%, var(--primary) 100%);
+  color: var(--white);
+  border: 0;
+}
+
+.btn-ghost {
+  background: var(--primary-opaque-12);
+  border: 1px solid var(--primary-opaque-25);
+  color: var(--primary);
+}
+
+/* Cards / Sections */
+.card {
+  background: var(--surface-800);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 28px 29px;
+}
+
+/* Utility spacing helpers */
+.gap-lg {
+  gap: var(--space-xxl);
+}
+.gap-md {
+  gap: var(--space-xl);
+}
+.gap-sm {
+  gap: var(--space-lg);
+}
+
+/* Small text styles */
+.muted {
+  color: var(--text-muted);
+}
+.muted-2 {
+  color: var(--text-medium);
+}
+
+/* Form array (modules / lessons) */
+.module {
+  border-radius: var(--radius-md);
+  background: var(--surface-900);
+  padding: 20px;
+  border: 1px solid var(--border);
+}
+
+/* Helpers for uppercase labels with tracking */
+.label-uppercase {
+  font-weight: 700;
+  font-size: 12.8px;
+  text-transform: uppercase;
+  letter-spacing: 0.64px;
+  color: var(--text-medium);
+}
+
+/* Small responsive touch */
+@media (max-width: 1024px) {
+  :root {
+    --space-xxl: 24px;
+  }
+  .app-container {
+    padding: 24px;
+  }
+}
+
+/* End of generated tokens */
