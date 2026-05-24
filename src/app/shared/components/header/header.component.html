@@ -1,0 +1,47 @@
+<header
+  class="h-[var(--header-height)] bg-[var(--surface-900)] border-b border-[var(--border)] sticky top-0 z-40"
+>
+  <div class="max-w-[1200px] mx-auto px-6 flex items-center justify-between h-full">
+    <a routerLink="/courses" class="flex items-center gap-3 no-underline text-[var(--text-high)]">
+      <div
+        class="w-9 h-9 rounded-lg bg-[var(--bg-start)] flex items-center justify-center text-white font-bold"
+      >
+        <img src="/start-icon.svg" alt="Logo" />
+      </div>
+
+      <div class="font-bold text-lg">
+        <img src="/rocket-courses-text.svg" alt="Logo" />
+      </div>
+
+      <a
+        routerLink="/courses"
+        class="flex items-center gap-[8px] bg-[var(--surface-700)] border border-[var(--border)] rounded-[6px] pl-[14px] px-3 py-2 hover:bg-[var(--surface-800)] transition-colors ml-8"
+      >
+        <svg
+          class="w-5 h-5 text-[var(--primary)]"
+          viewBox="0 0 24 24"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+          aria-hidden="true"
+        >
+          <path d="M10 3H3V10H10V3Z" stroke="currentColor" stroke-width="2" />
+          <path d="M21 3H14V10H21V3Z" stroke="currentColor" stroke-width="2" />
+          <path d="M10 14H3V21H10V14Z" stroke="currentColor" stroke-width="2" />
+          <path d="M21 14H14V21H21V14Z" stroke="currentColor" stroke-width="2" />
+        </svg>
+
+        <span class="text-[var(--primary)] font-semibold text-lg leading-none">Cursos</span>
+      </a>
+    </a>
+
+    <div class="flex items-center gap-3">
+      <button
+        type="button"
+        routerLink="/courses/new"
+        class="inline-flex items-center justify-center gap-2 rounded-[6px] bg-[var(--primary)] pt-[9.5px] pr-[15.333px] pb-[10.5px] pl-[20px] text-white transition-shadow ease-out hover:bg-[#00C98B] hover:shadow-[0_0_20px_rgba(0,179,126,0.30)] focus:outline-none focus:ring-2 focus:ring-[rgba(0,179,126,0.25)]"
+      >
+        Novo curso
+      </button>
+    </div>
+  </div>
+</header>

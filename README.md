@@ -21,6 +21,7 @@ src/
 │   │   │   ├── course.model.ts            # Interface de Curso
 │   │   │   └── module.model.ts            # Interface de Módulo
 │   │   ├── components/
+│   │   │   ├── header/                    # Header de Minha Aplicação
 │   │   │   ├── confirm-dialog/            # Modal de confirmação
 │   │   │   ├── loading-spinner/           # Spinner de carregamento
 │   │   │   └── empty-state/               # Estado vazio

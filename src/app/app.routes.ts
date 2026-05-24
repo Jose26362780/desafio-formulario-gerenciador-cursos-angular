@@ -7,7 +7,7 @@ export const routes: Routes = [
     redirectTo: 'courses',
   },
   {
-    path: '',
+    path: 'courses',
     loadChildren: () => import('./features/courses/courses.routes').then((m) => m.COURSE_ROUTES),
   },
   {
