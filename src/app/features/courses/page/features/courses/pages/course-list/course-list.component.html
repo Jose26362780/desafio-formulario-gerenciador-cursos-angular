@@ -1,1 +1,36 @@
-<p>course-list works!</p>
+<div class="w-full flex h-1/2 pl-[383px] pt-[40.5px]">
+  <div class="max-w-5xl w-full">
+    <h1 class="text-[32px] font-bold leading-none">Cursos</h1>
+    <p class="mt-2 text-sm text-[var(--text-medium)]">0 curso(s) cadastrado(s)</p>
+
+    <div class="flex items-center gap-3">
+      <input
+        type="text"
+        class="w-[400px] h-[43px] bg-transparent text-sm text-[var(--text-high)] outline-none placeholder:text-[var(--text-muted)] pl-9"
+        placeholder="Buscar por nome..."
+        style="
+          background-image: url('/Search.svg');
+          background-repeat: no-repeat;
+          background-position: 10px center;
+          background-size: 16px 16px;
+        "
+      />
+      <div
+        class="flex items-center overflow-hidden w-[80px] h-[43px] border border-[var(--border)] rounded-[6px]"
+      >
+        <button
+          type="button"
+          class="px-3 py-2 text-[var(--text-medium)] hover:bg-[var(--surface-800)]"
+        >
+          <img src="/LayoutGrid.svg" alt="" class="h-4 w-4" />
+        </button>
+        <button
+          type="button"
+          class="px-3 py-2 text-[var(--text-medium)] hover:bg-[var(--surface-800)]"
+        >
+          <img src="/ListView.svg" alt="" class="h-4 w-4" />
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
