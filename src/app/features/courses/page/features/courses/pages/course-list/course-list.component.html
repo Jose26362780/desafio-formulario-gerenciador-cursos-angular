@@ -1,13 +1,20 @@
 <div class="w-full flex h-1/2 pl-[383px] pt-[40.5px]">
-  <div class="max-w-5xl w-full">
-    <h1 class="text-[32px] font-bold leading-none">Cursos</h1>
-    <p class="mt-2 text-sm text-[var(--text-medium)]">0 curso(s) cadastrado(s)</p>
+  <main class="max-w-5xl w-full">
+    <header>
+      <h1 class="text-[32px] font-bold leading-none">Cursos</h1>
+      <p class="mt-2 text-sm text-[var(--text-medium)]">
+        <span id="course-count">0</span> curso(s) cadastrado(s)
+      </p>
+    </header>
 
-    <div class="flex items-center gap-3 pt-7">
+    <!-- Filtro e Controles de Visualização -->
+    <section class="flex items-center gap-3 pt-7" aria-label="Filtro e visualização de cursos">
       <input
-        type="text"
+        type="search"
+        id="course-search"
         class="w-[400px] h-[43px] text-sm text-[var(--text-high)] outline-none pl-9 border border-transparent rounded-[6px] focus:border-[#00B37E] focus:shadow-[0_0_0_2.613px_rgba(0,179,126,0.10)] transition-all duration-300 ease-out"
         placeholder="Buscar por nome..."
+        aria-label="Buscar cursos por nome"
         style="
           background-image: url('/Search.svg');
           background-repeat: no-repeat;
@@ -15,11 +22,15 @@
           background-size: 16px 16px;
         "
       />
-      <div
+
+      <fieldset
         class="flex items-center overflow-hidden w-[80px] h-[43px] border border-[var(--border)] rounded-[6px]"
       >
+        <legend class="sr-only">Tipo de visualização</legend>
+
         <button
           type="button"
+          aria-label="Visualizar como grade"
           class="flex-1 h-full flex items-center justify-center bg-transparent text-[var(--text-medium)] transition-colors duration-200 hover:bg-[var(--surface-700)] hover:text-[var(--primary)]"
         >
           <svg
@@ -28,6 +39,7 @@
             fill="none"
             stroke="currentColor"
             stroke-width="2"
+            aria-hidden="true"
           >
             <path d="M10 3H3V10H10V3Z" />
             <path d="M21 3H14V10H21V3Z" />
@@ -35,8 +47,10 @@
             <path d="M21 14H14V21H21V14Z" />
           </svg>
         </button>
+
         <button
           type="button"
+          aria-label="Visualizar como lista"
           class="flex-1 h-full flex items-center justify-center bg-transparent text-[var(--text-medium)] transition-colors duration-200 hover:bg-[var(--surface-700)] hover:text-[var(--primary)]"
         >
           <svg
@@ -45,6 +59,7 @@
             fill="none"
             stroke="currentColor"
             stroke-width="2"
+            aria-hidden="true"
           >
             <path d="M8 6H21" />
             <path d="M8 12H21" />
@@ -54,7 +69,70 @@
             <path d="M3 18H3.01" stroke-linecap="round" />
           </svg>
         </button>
-      </div>
-    </div>
-  </div>
+      </fieldset>
+    </section>
+
+    <!-- Estado vazio: Nenhum curso cadastrado -->
+    <article class="mt-16 flex flex-col items-center text-center" aria-labelledby="empty-title">
+      <figure
+        class="w-[103px] h-[103px] rounded-[24px] border border-[rgba(0,179,126,0.20)] bg-[rgba(0,179,126,0.12)] flex items-center justify-center"
+      >
+        <svg
+          class="w-[48px] h-[48px] text-[var(--primary)]"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.5"
+          aria-hidden="true"
+        >
+          <path d="M12 3L3 8l9 5 9-5-9-5Z" />
+          <path d="M3 12l9 5 9-5" />
+          <path d="M3 16l9 5 9-5" />
+        </svg>
+      </figure>
+
+      <h2 id="empty-title" class="mt-8 text-[24px] font-bold text-[var(--text-high)]">
+        Nenhum curso ainda
+      </h2>
+
+      <p class="mt-3 text-sm text-[var(--text-medium)]">Comece criando seu primeiro curso.</p>
+
+      <button
+        type="button"
+        class="mt-5 inline-flex items-center gap-3 rounded-[6px] bg-[var(--primary)] px-5 py-3 text-sm font-bold text-white uppercase tracking-[0.08em] transition-colors hover:bg-[#00C98B]"
+      >
+        <span class="text-lg leading-none" aria-hidden="true">+</span>
+        Criar primeiro curso
+      </button>
+    </article>
+
+    <!-- Estado vazio: Nenhum resultado na busca -->
+    <article
+      class="mt-16 flex flex-col items-center text-center"
+      aria-labelledby="no-results-title"
+    >
+      <figure
+        class="w-[103px] h-[103px] rounded-[24px] border border-[rgba(0,179,126,0.20)] bg-[rgba(0,179,126,0.12)] flex items-center justify-center"
+      >
+        <svg
+          class="w-[48px] h-[48px] text-[var(--primary)]"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.5"
+          aria-hidden="true"
+        >
+          <path d="M12 3L3 8l9 5 9-5-9-5Z" />
+          <path d="M3 12l9 5 9-5" />
+          <path d="M3 16l9 5 9-5" />
+        </svg>
+      </figure>
+
+      <h2 id="no-results-title" class="mt-8 text-[24px] font-bold text-[var(--text-high)]">
+        Nenhum Resultado
+      </h2>
+
+      <p class="mt-3 text-sm text-[var(--text-medium)]">Tente outro termo de busca</p>
+    </article>
+  </main>
 </div>
