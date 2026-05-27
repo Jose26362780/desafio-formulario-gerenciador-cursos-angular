@@ -3,10 +3,10 @@
     <h1 class="text-[32px] font-bold leading-none">Cursos</h1>
     <p class="mt-2 text-sm text-[var(--text-medium)]">0 curso(s) cadastrado(s)</p>
 
-    <div class="flex items-center gap-3">
+    <div class="flex items-center gap-3 pt-7">
       <input
         type="text"
-        class="w-[400px] h-[43px] bg-transparent text-sm text-[var(--text-high)] outline-none placeholder:text-[var(--text-muted)] pl-9"
+        class="w-[400px] h-[43px] text-sm text-[var(--text-high)] outline-none pl-9 border border-transparent rounded-[6px] focus:border-[#00B37E] focus:shadow-[0_0_0_2.613px_rgba(0,179,126,0.10)] transition-all duration-300 ease-out"
         placeholder="Buscar por nome..."
         style="
           background-image: url('/Search.svg');
@@ -20,15 +20,39 @@
       >
         <button
           type="button"
-          class="px-3 py-2 text-[var(--text-medium)] hover:bg-[var(--surface-800)]"
+          class="flex-1 h-full flex items-center justify-center bg-transparent text-[var(--text-medium)] transition-colors duration-200 hover:bg-[var(--surface-700)] hover:text-[var(--primary)]"
         >
-          <img src="/LayoutGrid.svg" alt="" class="h-4 w-4" />
+          <svg
+            class="h-4 w-4"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <path d="M10 3H3V10H10V3Z" />
+            <path d="M21 3H14V10H21V3Z" />
+            <path d="M10 14H3V21H10V14Z" />
+            <path d="M21 14H14V21H21V14Z" />
+          </svg>
         </button>
         <button
           type="button"
-          class="px-3 py-2 text-[var(--text-medium)] hover:bg-[var(--surface-800)]"
+          class="flex-1 h-full flex items-center justify-center bg-transparent text-[var(--text-medium)] transition-colors duration-200 hover:bg-[var(--surface-700)] hover:text-[var(--primary)]"
         >
-          <img src="/ListView.svg" alt="" class="h-4 w-4" />
+          <svg
+            class="h-4 w-4"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <path d="M8 6H21" />
+            <path d="M8 12H21" />
+            <path d="M8 18H21" />
+            <path d="M3 6H3.01" stroke-linecap="round" />
+            <path d="M3 12H3.01" stroke-linecap="round" />
+            <path d="M3 18H3.01" stroke-linecap="round" />
+          </svg>
         </button>
       </div>
     </div>
