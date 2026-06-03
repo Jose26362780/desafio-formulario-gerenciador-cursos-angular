@@ -19,44 +19,7 @@ import { EmptySearchResultComponent } from '../../../../../components/empty-sear
   templateUrl: './course-list.component.html',
 })
 export class CourseListComponent implements OnInit {
-  // private readonly courseService = inject(CourseService);
-
-  // // Armazena a lista original de cursos
-  // allCourses: CourseModel[] = [];
-
-  // // A lista que será exibida na tela
-  // courses$!: Observable<CourseModel[]>;
-
-  // isSearching = false;
-  // viewMode: 'grid' | 'list' = 'grid';
-
-  // ngOnInit(): void {
-  //   this.courses$ = this.courseService.getAll().pipe(
-  //     tap((courses) => {
-  //       this.allCourses = courses; // Guarda a lista completa
-  //     }),
-  //   );
-  // }
-
-  // onSearchChanged(searchTerm: string): void {
-  //   this.isSearching = searchTerm.length > 0;
-
-  //   if (!this.isSearching) {
-  //     // Se a busca estiver vazia, mostra todos os cursos
-  //     this.courses$ = of(this.allCourses);
-  //   } else {
-  //     // Se houver um termo, busca no serviço
-  //     this.courses$ = this.courseService.searchByName(searchTerm);
-  //   }
-  // }
-
-  // onViewChanged(view: 'grid' | 'list'): void {
-  //   this.viewMode = view;
-  // }
-
-  // navigateToCreateCourse(): void {
-  //   console.log('Navegando para a página de criação...');
-  // }
+  public currentView: 'grid' | 'list' = 'grid'; // 'grid' como padrão
 
   // ==================================================
   // ============== CONTROLES MANUAIS =================
@@ -114,12 +77,106 @@ export class CourseListComponent implements OnInit {
         },
       ],
     },
+    {
+      id: '2',
+      name: 'API REST com Spring Boot',
+      category: 'Backend',
+      description:
+        'Construa APIs robustas com Java, Spring Boot, JPA e boas práticas de arquitetura.',
+      modules: [
+        { id: 'm3', name: 'Setup', lessons: [{ id: 'l6', name: 'Aula 1' }] },
+        {
+          id: 'm4',
+          name: 'Endpoints',
+          lessons: [
+            { id: 'l7', name: 'Aula 2' },
+            { id: 'l8', name: 'Aula 3' },
+            { id: 'l9', name: 'Aula 4' },
+          ],
+        },
+      ],
+    },
+    {
+      id: '2',
+      name: 'API REST com Spring Boot',
+      category: 'Backend',
+      description:
+        'Construa APIs robustas com Java, Spring Boot, JPA e boas práticas de arquitetura.',
+      modules: [
+        { id: 'm3', name: 'Setup', lessons: [{ id: 'l6', name: 'Aula 1' }] },
+        {
+          id: 'm4',
+          name: 'Endpoints',
+          lessons: [
+            { id: 'l7', name: 'Aula 2' },
+            { id: 'l8', name: 'Aula 3' },
+            { id: 'l9', name: 'Aula 4' },
+          ],
+        },
+      ],
+    },
+    {
+      id: '2',
+      name: 'API REST com Spring Boot',
+      category: 'Backend',
+      description:
+        'Construa APIs robustas com Java, Spring Boot, JPA e boas práticas de arquitetura.',
+      modules: [
+        { id: 'm3', name: 'Setup', lessons: [{ id: 'l6', name: 'Aula 1' }] },
+        {
+          id: 'm4',
+          name: 'Endpoints',
+          lessons: [
+            { id: 'l7', name: 'Aula 2' },
+            { id: 'l8', name: 'Aula 3' },
+            { id: 'l9', name: 'Aula 4' },
+          ],
+        },
+      ],
+    },
+    {
+      id: '2',
+      name: 'API REST com Spring Boot',
+      category: 'Backend',
+      description:
+        'Construa APIs robustas com Java, Spring Boot, JPA e boas práticas de arquitetura.',
+      modules: [
+        { id: 'm3', name: 'Setup', lessons: [{ id: 'l6', name: 'Aula 1' }] },
+        {
+          id: 'm4',
+          name: 'Endpoints',
+          lessons: [
+            { id: 'l7', name: 'Aula 2' },
+            { id: 'l8', name: 'Aula 3' },
+            { id: 'l9', name: 'Aula 4' },
+          ],
+        },
+      ],
+    },
+    {
+      id: '2',
+      name: 'API REST com Spring Boot',
+      category: 'Backend',
+      description:
+        'Construa APIs robustas com Java, Spring Boot, JPA e boas práticas de arquitetura.',
+      modules: [
+        { id: 'm3', name: 'Setup', lessons: [{ id: 'l6', name: 'Aula 1' }] },
+        {
+          id: 'm4',
+          name: 'Endpoints',
+          lessons: [
+            { id: 'l7', name: 'Aula 2' },
+            { id: 'l8', name: 'Aula 3' },
+            { id: 'l9', name: 'Aula 4' },
+          ],
+        },
+      ],
+    },
   ];
 
   allCourses: CourseModel[] = [];
   courses$!: Observable<CourseModel[]>;
   isSearching = false;
-  viewMode: 'grid' | 'list' = 'list';
 
   ngOnInit(): void {
     // Define a lista de cursos com base nos controles manuais
@@ -156,7 +213,7 @@ export class CourseListComponent implements OnInit {
   }
 
   onViewChanged(view: 'grid' | 'list'): void {
-    this.viewMode = view;
+    this.currentView = view;
   }
 
   navigateToCreateCourse(): void {

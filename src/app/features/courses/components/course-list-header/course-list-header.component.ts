@@ -10,6 +10,7 @@ type ViewMode = 'grid' | 'list';
   templateUrl: './course-list-header.component.html',
 })
 export class CourseListHeaderComponent {
+  @Input() currentView: 'grid' | 'list' = 'grid';
   @Input() courseCount: number = 0;
 
   @Output() searchChanged = new EventEmitter<string>();

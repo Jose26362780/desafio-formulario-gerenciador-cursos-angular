@@ -1,8 +1,9 @@
 <div class="w-full flex h-1/2 pl-[383px] pt-[40.5px]">
-  <main class="max-w-5xl w-full">
+  <main class="max-w-6xl w-full">
     <!-- 1. Componente de cabeçalho, conectado aos métodos do .ts -->
     <app-course-list-header
       [courseCount]="allCourses.length"
+      [currentView]="currentView"
       (searchChanged)="onSearchChanged($event)"
       (viewChanged)="onViewChanged($event)"
     ></app-course-list-header>
@@ -11,7 +12,14 @@
     @if (courses$ | async; as courses) {
       <!-- 3. Se a lista de cursos (filtrada ou não) tiver itens, mostra a grade -->
       @if (courses.length > 0) {
-        <section class="mt-8 grid grid-cols-3 gap-6">
+        <section
+          class="mt-8"
+          [ngClass]="{
+            'grid grid-cols-3 gap-6': currentView === 'grid',
+            'flex flex-col gap-4': currentView === 'list',
+          }"
+          style="border: 1px solid red"
+        >
           @for (course of courses; track course.id) {
             <app-course-card [course]="course"></app-course-card>
           }

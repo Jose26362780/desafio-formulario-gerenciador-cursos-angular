@@ -29,10 +29,10 @@
     <button
       type="button"
       aria-label="Visualizar como grade"
-      (click)="changeView('grid')"
-      [class.text-[var(--primary)]]="activeView === 'grid'"
-      [class.bg-[var(--surface-secondary)]]="activeView === 'grid'"
-      class="flex-1 h-full flex items-center justify-center bg-transparent text-[var(--text-medium)] transition-colors duration-200 hover:bg-[var(--surface-700)] hover:text-[var(--primary)]"
+      (click)="viewChanged.emit('grid')"
+      [class.bg-[var(--surface-700)]]="currentView === 'grid'"
+      [class.text-[var(--primary)]]="currentView === 'grid'"
+      class="flex-1 h-full flex items-center justify-center bg-transparent text-[var(--text-medium)] transition-colors duration-200 hover:text-[var(--primary)]"
     >
       <svg
         class="h-4 w-4"
@@ -52,9 +52,9 @@
     <button
       type="button"
       aria-label="Visualizar como lista"
-      (click)="changeView('list')"
-      [class.text-[var(--primary)]]="activeView === 'list'"
-      [class.bg-[var(--surface-secondary)]]="activeView === 'list'"
+      (click)="viewChanged.emit('list')"
+      [class.bg-[var(--surface-700)]]="currentView === 'list'"
+      [class.text-[var(--primary)]]="currentView === 'list'"
       class="flex-1 h-full flex items-center justify-center bg-transparent text-[var(--text-medium)] transition-colors duration-200 hover:bg-[var(--surface-700)] hover:text-[var(--primary)]"
     >
       <svg
