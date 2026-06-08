@@ -22,7 +22,7 @@ src/
 │   │   │   └── module.model.ts            # Interface de Módulo
 │   │   ├── components/
 │   │   │   ├── header/                    # Header de Minha Aplicação
-│   │   │   ├── confirm-dialog/            # Modal de confirmação
+│   │   │   ├── confirm-delete-course-dialog/            # Modal de confirmação
 │   │   │   ├── loading-spinner/           # Spinner de carregamento
 │   │   │   └── empty-state/               # Estado vazio
 │   │   └── utils/

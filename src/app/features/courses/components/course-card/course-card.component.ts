@@ -1,10 +1,11 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { CourseModel } from '../../../../shared/models/course-model';
 import { UpperCasePipe } from '@angular/common';
+import { ConfirmDeleteCouseDialogComponent } from '../../../../shared/components/confirm-delete-couse-dialog/confirm-delete-couse-dialog.component';
 
 @Component({
   selector: 'app-course-card',
-  imports: [UpperCasePipe],
+  imports: [UpperCasePipe, ConfirmDeleteCouseDialogComponent],
   templateUrl: './course-card.component.html',
 })
 export class CourseCardComponent {
@@ -17,6 +18,8 @@ export class CourseCardComponent {
 
   // 3. Emite o ID do curso quando o botão de excluir é clicado.
   @Output() delete = new EventEmitter<string>();
+
+  showDeleteModal: boolean = false;
 
   /**
    * Calcula o número total de aulas somando as aulas de todos os módulos.
@@ -43,9 +46,15 @@ export class CourseCardComponent {
    * Emite o evento 'delete' com o ID do curso.
    */
   onDelete(): void {
-    // Adicionar uma confirmação antes de excluir é uma boa prática.
-    if (confirm(`Tem certeza que deseja excluir o curso "${this.course.name}"?`)) {
-      this.delete.emit(this.course.id);
-    }
+    this.showDeleteModal = true;
+  }
+
+  onCancelDelete(): void {
+    this.showDeleteModal = false;
+  }
+
+  confirmDeleteCourse(courseId: string): void {
+    this.delete.emit(courseId);
+    this.showDeleteModal = false;
   }
 }

@@ -1,6 +1,6 @@
 <!-- O container principal do card. As classes de layout (grid/flex) virão do componente pai. -->
 <article
-  class="flex gap-3 flex-col p-5 rounded-lg border border-[var(--border)] bg-[var(--surface-800)] hover:border-[var(--primary)] hover:shadow-[inset_0_30px_60px_rgba(0,179,126,0.07)] transition-all duration-500 ease-out cursor-pointer"
+  class="flex gap-3 flex-col p-5 rounded-lg border border-[var(--border)] bg-[var(--surface-800)] hover:border-[var(--primary)] hover:bg-gradient-card-hover hover:shadow-[inset_0_30px_60px_rgba(0,179,126,0.07)] transition-all duration-500 ease-out cursor-pointer"
 >
   <!-- Seção Superior: Categoria e Botões de Ação -->
   <header class="flex items-center justify-between">
@@ -39,23 +39,22 @@
       <button
         (click)="onDelete()"
         aria-label="Excluir curso"
-        class="group rounded-md border border-[var(--border)] p-1.5 text-[var(--text-low)] transition-colors hover:bg-[var(--surface-secondary)] hover:text-[var(--text-high)]"
+        class="group rounded-md border border-[var(--border)] p-1.5 text-[var(--text-low)] transition-colors hover:bg-[var(--surface-secondary)] hover:text-[var(--text-high)] hover:border-[color:var(--danger)]"
       >
         <svg
-          class="h-4 w-4"
+          class="h-4 w-4 stroke-[#4A5568] group-hover:stroke-[color:var(--danger)] transition-colors duration-200 ease-in-out"
           viewBox="0 0 24 24"
           fill="none"
           stroke="currentColor"
           stroke-width="2"
           aria-hidden="true"
         >
-          <path d="M3 6H5H21" stroke="#4A5568" stroke-width="2" />
+          <path d="M3 6H5H21" stroke-width="2" />
           <path
             d="M19 6L18.1429 19.1429C18.1429 19.6883 17.9261 20.2114 17.5403 20.5972C17.1546 20.983 16.6314 21.2 16.0857 21.2H7.91429C7.36863 21.2 6.84547 20.983 6.45968 20.5972C6.07389 20.2114 5.85714 19.6883 5.85714 19.1429L5 6"
-            stroke="#4A5568"
             stroke-width="2"
           />
-          <path d="M10 11V17M14 11V17" stroke="#4A5568" stroke-width="2" />
+          <path d="M10 11V17M14 11V17" stroke-width="2" />
         </svg>
       </button>
     </div>
@@ -108,3 +107,10 @@
     </div>
   </footer>
 </article>
+@if (showDeleteModal) {
+  <app-confirm-delete-couse-dialog
+    [courseName]="course.name"
+    (cancel)="onCancelDelete()"
+    (confirmDelete)="confirmDeleteCourse($event)"
+  ></app-confirm-delete-couse-dialog>
+}
