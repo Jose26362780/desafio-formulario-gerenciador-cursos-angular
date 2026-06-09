@@ -4,12 +4,12 @@ import { CommonModule } from '@angular/common';
 type ViewMode = 'grid' | 'list';
 
 @Component({
-  selector: 'app-course-list-header',
+  selector: 'app-course-card-filter',
   standalone: true,
   imports: [CommonModule],
-  templateUrl: './course-list-header.component.html',
+  templateUrl: './course-card-filter.component.html',
 })
-export class CourseListHeaderComponent {
+export class CourseCardFilterComponent {
   @Input() currentView: 'grid' | 'list' = 'grid';
   @Input() courseCount: number = 0;
 

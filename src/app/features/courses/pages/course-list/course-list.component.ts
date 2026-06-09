@@ -1,16 +1,16 @@
 import { CommonModule } from '@angular/common';
 import { Component, inject, OnInit } from '@angular/core';
-import { CourseListHeaderComponent } from '../../components/course-list-header/course-list-header.component';
 import { CourseCardComponent } from '../../components/course-card/course-card.component';
 import { EmptySearchResultComponent } from '../../components/empty-search-result/empty-search-result.component';
 import { Observable, of } from 'rxjs';
 import { CourseModel } from '../../../../shared/models/course-model';
+import { CourseCardFilterComponent } from '../../components/course-card-filter/course-card-filter.component';
 
 @Component({
   selector: 'app-course-list',
   imports: [
     CommonModule,
-    CourseListHeaderComponent,
+    CourseCardFilterComponent,
     CourseCardComponent,
     EmptySearchResultComponent,
   ],

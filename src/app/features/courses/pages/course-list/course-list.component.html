@@ -1,12 +1,12 @@
 <div class="w-full flex h-1/2 pl-[383px] pt-[40.5px]">
   <main class="max-w-6xl w-full">
     <!-- 1. Componente de cabeçalho, conectado aos métodos do .ts -->
-    <app-course-list-header
+    <app-course-card-filter
       [courseCount]="allCourses.length"
       [currentView]="currentView"
       (searchChanged)="onSearchChanged($event)"
       (viewChanged)="onViewChanged($event)"
-    ></app-course-list-header>
+    ></app-course-card-filter>
 
     <!-- 2. Bloco principal que aguarda a resolução do observable courses$ -->
     @if (courses$ | async; as courses) {

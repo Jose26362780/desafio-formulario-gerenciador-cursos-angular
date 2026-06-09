@@ -44,9 +44,12 @@ src/
 │   │   │       └── course-details.component.css
 │   │   │
 │   │   └── components/
-│   │       ├── course-card/               # Card reutilizável do curso
-│   │       ├── course-form-content/       # Formulário reutilizável
-│   │       └── modules-list/              # Lista de módulos e aulas
+│   │       ├── course-card/                     (renderiza 1 card)
+|   |       ├── course-card-filter/              (filtro + view toggle)
+│   │       ├── empty-search-result/             (estado vazio)
+│   │       ├── course-details-title-content/    (cabeçalho dos detalhes)
+│   │       └── course-details-module-content/   (lista de módulos)
+│   │
 │   │
 │   ├── environments/
 │   │   ├── environment.ts #Configuração de Ambiente
