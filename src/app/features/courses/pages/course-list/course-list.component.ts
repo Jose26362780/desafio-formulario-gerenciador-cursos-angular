@@ -1,12 +1,10 @@
 import { CommonModule } from '@angular/common';
 import { Component, inject, OnInit } from '@angular/core';
-
-import { CourseService } from '../../../../../../../core/services/course.service';
-import { CourseListHeaderComponent } from '../../../../../components/course-list-header/course-list-header.component';
-import { CourseCardComponent } from '../../../../../components/course-card/course-card.component';
-import { CourseModel } from '../../../../../../../shared/models/course-model';
-import { Observable, of, tap } from 'rxjs';
-import { EmptySearchResultComponent } from '../../../../../components/empty-search-result/empty-search-result.component';
+import { CourseListHeaderComponent } from '../../components/course-list-header/course-list-header.component';
+import { CourseCardComponent } from '../../components/course-card/course-card.component';
+import { EmptySearchResultComponent } from '../../components/empty-search-result/empty-search-result.component';
+import { Observable, of } from 'rxjs';
+import { CourseModel } from '../../../../shared/models/course-model';
 
 @Component({
   selector: 'app-course-list',

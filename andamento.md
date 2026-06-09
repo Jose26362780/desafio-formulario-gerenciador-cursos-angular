@@ -14,7 +14,7 @@ Use este checklist para acompanhar a entrega por fase, com prioridade e estimati
 
 ## Fase 2 - Estrutura de páginas
 
-- [ ] Criar página de listagem de cursos
+- [x] Criar página de listagem de cursos
 - [ ] Criar página de detalhes do curso
 - [ ] Implementar navegação entre as páginas
 
