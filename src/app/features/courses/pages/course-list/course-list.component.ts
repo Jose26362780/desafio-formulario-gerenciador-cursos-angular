@@ -8,6 +8,7 @@ import { CourseCardFilterComponent } from '../../components/course-card-filter/c
 
 @Component({
   selector: 'app-course-list',
+  standalone: true,
   imports: [
     CommonModule,
     CourseCardFilterComponent,

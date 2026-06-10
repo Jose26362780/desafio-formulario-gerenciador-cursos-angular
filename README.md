@@ -31,17 +31,9 @@ src/
 │   ├── features/courses/                  # Feature principal - Cursos
 │   │   ├── pages/
 │   │   │   ├── course-list/               # Listagem de cursos
-│   │   │   │   ├── course-list.component.ts
-│   │   │   │   ├── course-list.component.html
-│   │   │   │   └── course-list.component.css
-│   │   │   ├── course-form/               # Criar/editar curso
-│   │   │   │   ├── course-form.component.ts
-│   │   │   │   ├── course-form.component.html
-│   │   │   │   └── course-form.component.css
+│   │   │   ├── course-form/               # Criar Curso
+│   │   │   ├── course-form-edit/          # Edita Curso
 │   │   │   └── course-details/            # Visualizar curso
-│   │   │       ├── course-details.component.ts
-│   │   │       ├── course-details.component.html
-│   │   │       └── course-details.component.css
 │   │   │
 │   │   └── components/
 │   │       ├── course-card/                     (renderiza 1 card)

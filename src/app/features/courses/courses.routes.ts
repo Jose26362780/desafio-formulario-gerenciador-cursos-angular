@@ -11,7 +11,6 @@ export const COURSE_ROUTES: Routes = [
     path: 'new',
     loadComponent: () =>
       import('./pages/course-form/course-form.component').then((m) => m.CourseFormComponent),
-    data: { mode: 'create' },
   },
   {
     path: ':id',
@@ -23,7 +22,8 @@ export const COURSE_ROUTES: Routes = [
   {
     path: ':id/edit',
     loadComponent: () =>
-      import('./pages/course-form/course-form.component').then((m) => m.CourseFormComponent),
-    data: { mode: 'edit' },
+      import('./pages/course-form-edit/course-form-edit.component').then(
+        (m) => m.CourseFormEditComponent,
+      ),
   },
 ];

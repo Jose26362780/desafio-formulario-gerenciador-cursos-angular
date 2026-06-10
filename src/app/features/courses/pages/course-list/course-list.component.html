@@ -1,6 +1,5 @@
 <div class="w-full flex h-1/2 pl-[383px] pt-[40.5px]">
   <main class="max-w-6xl w-full">
-    <!-- 1. Componente de cabeçalho, conectado aos métodos do .ts -->
     <app-course-card-filter
       [courseCount]="allCourses.length"
       [currentView]="currentView"
@@ -8,9 +7,7 @@
       (viewChanged)="onViewChanged($event)"
     ></app-course-card-filter>
 
-    <!-- 2. Bloco principal que aguarda a resolução do observable courses$ -->
     @if (courses$ | async; as courses) {
-      <!-- 3. Se a lista de cursos (filtrada ou não) tiver itens, mostra a grade -->
       @if (courses.length > 0) {
         <section
           class="mt-8"
@@ -23,8 +20,6 @@
             <app-course-card [course]="course"></app-course-card>
           }
         </section>
-
-        <!-- 4. Se a lista geral está vazia e não estamos buscando, mostra o estado inicial -->
       } @else if (allCourses.length === 0 && !isSearching) {
         <app-empty-search-result
           title="Nenhum curso ainda"
@@ -33,18 +28,10 @@
           (buttonClick)="navigateToCreateCourse()"
         >
         </app-empty-search-result>
-
-        <!-- 5. Se a busca não retornou resultados, mostra o estado de busca vazia -->
       } @else {
         <app-empty-search-result title="Nenhum Resultado" message="Tente outro termo de busca">
         </app-empty-search-result>
       }
-    } @else {
-      <!-- 6. (Opcional) Enquanto o observable inicial não emite, mostra um loader -->
-      <div class="mt-16 flex justify-center">
-        <p class="text-[var(--text-medium)]">Carregando cursos...</p>
-        <!-- Você pode substituir isso por um componente de spinner/loading -->
-      </div>
     }
   </main>
 </div>

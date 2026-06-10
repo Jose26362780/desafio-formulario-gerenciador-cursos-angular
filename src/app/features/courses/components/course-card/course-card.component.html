@@ -1,11 +1,9 @@
-<!-- O container principal do card. As classes de layout (grid/flex) virão do componente pai. -->
 <article
   class="flex gap-3 flex-col p-5 rounded-lg border border-[var(--border)] bg-[var(--surface-800)] hover:border-[var(--primary)] hover:bg-gradient-card-hover hover:shadow-[inset_0_30px_60px_rgba(0,179,126,0.07)] transition-all duration-500 ease-out cursor-pointer"
 >
-  <!-- Seção Superior: Categoria e Botões de Ação -->
   <header class="flex items-center justify-between">
     <span
-      class="items-center justify-center rounded-full px-3 py-1 text-xs font-bold leading-none text-[var(--primary)] border border-[var(--border)] bg-[var(--bg-start)] tracking-[0.72px]"
+      class="inline-flex items-center justify-center rounded-full px-3 py-1 text-xs font-bold text-[var(--primary)] border border-[var(--border)] bg-[var(--bg-start)] tracking-[0.72px]"
     >
       {{ course.category | uppercase }}
     </span>

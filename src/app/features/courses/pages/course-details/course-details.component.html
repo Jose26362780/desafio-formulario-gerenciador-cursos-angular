@@ -1,1 +1,11 @@
-<p>course-details works!</p>
+<div class="w-full flex h-1/2 pl-[490px] pt-[40.5px]">
+  <div style="border: 1px solid red">
+    <main class="max-w-6xl w-full">
+      <app-course-details-title-content
+        [courseId]="courseId"
+        [course]="course"
+      ></app-course-details-title-content>
+      <app-course-details-module-content></app-course-details-module-content>
+    </main>
+  </div>
+</div>

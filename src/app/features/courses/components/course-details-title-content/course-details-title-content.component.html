@@ -1,1 +1,63 @@
-<p>course-details-title-content works!</p>
+<section
+  class="flex h-[299px] w-[1136px] flex-col items-start gap-6 self-stretch shrink-0 rounded-[16px] border border-[var(--border)] bg-[var(--surface-800)] px-[33px] pb-px pt-[33px]"
+>
+  <header class="flex w-full items-center justify-between">
+    <div class="flex items-center">
+      <button
+        type="button"
+        class="inline-flex items-center gap-2 rounded-md px-2 py-1 text-[var(--text-medium)] transition-colors hover:bg-[var(--surface-700)] hover:text-[var(--text-high)]"
+        routerLink="/courses"
+      >
+        <img src="/ChevronLeft.svg" alt="" class="h-4 w-4" />
+
+        <span class="text-sm font-medium">Voltar</span>
+      </button>
+    </div>
+
+    <div class="flex items-center">
+      <button
+        type="button"
+        class="inline-flex items-center gap-2 rounded-[6px] bg-[var(--primary)] px-4 py-2 text-sm font-bold uppercase tracking-[0.08em] text-white transition-colors hover:bg-[#00C98B]"
+        [routerLink]="['/courses', courseId, 'edit']"
+      >
+        <img src="/edit-white.svg" alt="" class="h-4 w-4" />
+
+        <span>Editar curso</span>
+      </button>
+    </div>
+  </header>
+
+  <div class="flex flex-col gap-6">
+    <span
+      class="inline-flex w-fit items-center justify-center rounded-full px-3 py-1 text-xs font-bold text-[var(--primary)] border border-[var(--border)] bg-[var(--bg-start)] tracking-[0.72px]"
+    >
+      FRONTEND
+    </span>
+    <div class="flex flex-col gap-2">
+      <h1 class="text-[32px] font-semibold leading-tight text-[var(--text-high)]">
+        Reactive Forms com Angular
+      </h1>
+
+      <p class="max-w-[980px] text-sm leading-6 text-[var(--text-medium)]">
+        Aprenda a criar formulários reativos com Angular utilizando FormGroup, FormArray e
+        validators na prática.
+      </p>
+    </div>
+
+    <footer class="flex items-center gap-3">
+      <div
+        class="inline-flex items-center gap-2 rounded-full border border-[var(--border)] bg-[var(--surface-900)] px-4 py-2 text-sm text-[var(--text-medium)]"
+      >
+        <img src="/cursos-icon.svg" alt="" />
+        <span>2 módulos</span>
+      </div>
+
+      <div
+        class="inline-flex items-center gap-2 rounded-full border border-[var(--border)] bg-[var(--surface-900)] px-4 py-2 text-sm text-[#93A1B8]"
+      >
+        <img src="/camera-green.svg" alt="" />
+        <span>5 aulas</span>
+      </div>
+    </footer>
+  </div>
+</section>
