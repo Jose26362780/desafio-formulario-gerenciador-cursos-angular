@@ -15,11 +15,13 @@ Use este checklist para acompanhar a entrega por fase, com prioridade e estimati
 ## Fase 2 - Estrutura de páginas
 
 - [x] Criar página de listagem de cursos
-- [ ] Criar página de detalhes do curso
-- [ ] Implementar navegação entre as páginas
+- [x] Criar página de detalhes do curso
+- [x] Implementar navegação entre as páginas
 
 ## Fase 3 - Formulário principal
 
+- [ ] Criar Page Criar Curso
+- [ ] Criar Page Editar Curso
 - [ ] Criar formulário reativo com FormGroup principal (nome, descrição, categoria)
 - [ ] Implementar FormArray de módulos
 - [ ] Implementar FormArray de aulas dentro de cada módulo

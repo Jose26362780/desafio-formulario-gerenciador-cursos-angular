@@ -40,8 +40,10 @@ src/
 |   |       ├── course-card-filter/              (filtro + view toggle)
 │   │       ├── empty-search-result/             (estado vazio)
 │   │       ├── course-details-title-content/    (cabeçalho dos detalhes)
-│   │       └── course-details-module-content/   (lista de módulos)
-│   │
+│   │       ├── course-details-module-content/   (lista de módulos)
+│   │       ├── course-form-title-info/          (Header do Form)
+│   │       ├── course-form-section-one-info     ( Formulario com informações do curso)
+│   │       └── course-form-section-two-modules  ( Formulario com modulos ) 
 │   │
 │   ├── environments/
 │   │   ├── environment.ts #Configuração de Ambiente
