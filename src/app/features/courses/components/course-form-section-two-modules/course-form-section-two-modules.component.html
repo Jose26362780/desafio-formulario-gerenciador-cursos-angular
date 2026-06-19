@@ -81,6 +81,74 @@
     </div>
   </article>
 
+  <article class="module flex w-full flex-col gap-5">
+    <!-- Topo: MÓDULO 1 + Remover -->
+    <div class="flex w-full items-center justify-between">
+      <span class="text-xs font-bold uppercase tracking-[0.64px] text-[var(--primary)]">
+        Módulo 2
+      </span>
+
+      <button
+        type="button"
+        class="inline-flex items-center gap-2 text-sm text-[var(--text-muted)] transition-colors hover:text-[var(--danger)]"
+      >
+        <img src="/Close.svg" alt="" class="h-3 w-3 opacity-70" />
+        Remover módulo
+      </button>
+    </div>
+
+    <!-- Nome do módulo -->
+    <div class="flex w-full flex-col gap-2">
+      <label class="label-uppercase" for="module-name-1">
+        Nome do módulo <span class="text-[var(--danger)]">*</span>
+      </label>
+      <input
+        id="module-name-1"
+        type="text"
+        class="w-full text-sm !text-[var(--text-high)] outline-none !border !border-[var(--border)] rounded-[6px] focus:!text-[var(--primary)] focus:!border-[var(--primary)] focus:shadow-[0_0_0_2.613px_rgba(0,179,126,0.10)] transition-all duration-300 ease-out"
+        placeholder="Ex: Fundamentos do HTML"
+      />
+    </div>
+
+    <!-- Aulas -->
+    <div class="flex w-full flex-col gap-3">
+      <div class="flex w-full items-center justify-between">
+        <span class="label-uppercase">Aulas</span>
+
+        <button
+          type="button"
+          class="inline-flex h-[39px] items-center gap-2 rounded-[6px] border border-[var(--primary-opaque-25)] bg-[var(--primary-opaque-12)] px-4 text-xs font-bold uppercase tracking-[0.64px] text-[var(--primary)] transition-colors hover:bg-[var(--primary-opaque-25)]"
+        >
+          <img src="/add-green.svg" alt="" class="h-3 w-3" /> Aula
+        </button>
+      </div>
+
+      <!-- Linha da aula 1 -->
+      <div class="flex w-full items-center gap-3">
+        <span
+          class="inline-flex h-[39px] w-[39px] shrink-0 items-center justify-center rounded-[6px] border border-[var(--border)] bg-[var(--surface-700)] text-sm font-bold text-[var(--text-medium)]"
+        >
+          1
+        </span>
+
+        <input
+          id="lesson-name-1-1"
+          type="text"
+          class="h-[39px] w-full text-sm !text-[var(--text-high)] outline-none !border !border-[var(--border)] rounded-[6px] focus:!text-[var(--primary)] focus:!border-[var(--primary)] focus:shadow-[0_0_0_2.613px_rgba(0,179,126,0.10)] transition-all duration-300 ease-out"
+          placeholder="Nome da aula"
+        />
+
+        <button
+          type="button"
+          class="shrink-0 text-[var(--text-muted)] transition-colors hover:text-[var(--danger)]"
+          aria-label="Remover aula"
+        >
+          <img src="/Close.svg" alt="" class="h-3 w-3 opacity-50" />
+        </button>
+      </div>
+    </div>
+  </article>
+
   <!-- Adicionar módulo -->
   <button
     type="button"
