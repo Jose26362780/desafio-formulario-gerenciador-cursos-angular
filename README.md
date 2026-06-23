@@ -9,26 +9,26 @@ src/
 ├── app/
 │   ├── core/                              # Serviços & Config centralizados
 │   │   ├── services/
-│   │   │   ├── course.service.ts          # HTTP calls para API
-│   │   │   └── validation.service.ts      # Validações customizadas
+│   │   │   ├── course.service.ts                 # HTTP calls para API
+│   │   │   └── course-form-store.service.ts      # Store de estado do formulário
 │   │   ├── guards/
-│   │   │   └── course.guard.ts            # Proteção de rotas
+│   │   │   └── course.guard.ts                   # Proteção de rotas
 │   │   └── interceptors/
-│   │       └── error.interceptor.ts       # Tratamento global de erros
+│   │       └── error.interceptor.ts              # Tratamento global de erros
 │   │
-│   ├── shared/                            # Reutilizável em toda aplicação
+│   ├── shared/                                   # Reutilizável em toda aplicação
 │   │   ├── models/
-│   │   │   ├── course.model.ts            # Interface de Curso
-│   │   │   └── module.model.ts            # Interface de Módulo
+│   │   │   ├── course.model.ts                   # Interface de Curso
+│   │   │   └── module.model.ts                   # Interface de Módulo
 │   │   ├── components/
-│   │   │   ├── header/                    # Header de Minha Aplicação
-│   │   │   ├── confirm-delete-course-dialog/            # Modal de confirmação
-│   │   │   ├── loading-spinner/           # Spinner de carregamento
-│   │   │   └── empty-state/               # Estado vazio
+│   │   │   ├── header/                           # Header de Minha Aplicação
+│   │   │   ├── confirm-delete-course-dialog/     # Modal de confirmação
+│   │   │   ├── loading-spinner/                  # Spinner de carregamento
+│   │   │   └── empty-state/                      # Estado vazio
 │   │   └── utils/
-│   │       └── validators.ts              # Validadores customizados
+│   │       └── validators.ts                     # Validadores customizados
 │   │
-│   ├── features/courses/                  # Feature principal - Cursos
+│   ├── features/courses/                         # Feature principal - Cursos
 │   │   ├── pages/
 │   │   │   ├── course-list/               # Listagem de cursos
 │   │   │   ├── course-form/               # Criar Curso
@@ -57,13 +57,6 @@ src/
 ├── index.html
 └── styles.css
 
-📋 Arquivos de Configuração
-├── angular.json
-├── package.json
-├── tsconfig.json
-├── tsconfig.app.json
-├── tsconfig.spec.json
-└── README.md
 ```
 
 ## 🎯 Arquitetura - Estrutura Simplificada (Junior)

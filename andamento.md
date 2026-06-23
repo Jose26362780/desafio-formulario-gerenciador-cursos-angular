@@ -20,11 +20,11 @@ Use este checklist para acompanhar a entrega por fase, com prioridade e estimati
 
 ## Fase 3 - Formulário principal
 
-- [ ] Criar Page Criar Curso
-- [ ] Criar Page Editar Curso
-- [ ] Criar formulário reativo com FormGroup principal (nome, descrição, categoria)
-- [ ] Implementar FormArray de módulos
-- [ ] Implementar FormArray de aulas dentro de cada módulo
+- [x] Criar Page Criar Curso
+- [x] Criar Page Editar Curso
+- [x] Criar formulário reativo com FormGroup principal (nome, descrição, categoria)
+- [x] Implementar FormArray de módulos
+- [x] Implementar FormArray de aulas dentro de cada módulo
 - [ ] Adicionar botões para adicionar e remover módulos
 - [ ] Adicionar botões para adicionar e remover aulas
 

@@ -27,7 +27,6 @@ export class CourseService {
   create(course: CourseModel): Observable<CourseModel> {
     return this.http.post<CourseModel>(`${this.apiUrl}/courses`, course);
   }
-
   update(id: string, course: CourseModel): Observable<CourseModel> {
     return this.http.put<CourseModel>(`${this.apiUrl}/courses/${id}`, course);
   }
