@@ -1,5 +1,6 @@
 <section
   class="flex w-[1136px] shrink-0 flex-col items-start gap-[24.1px] rounded-[14px] border border-[var(--border)] bg-[var(--surface-800)] pt-[27.9px] px-7 pb-7"
+  [formGroup]="module"
 >
   <!-- Cabeçalho da seção -->
   <header class="flex items-start gap-4">
@@ -44,7 +45,7 @@
 
     <!-- Aulas -->
     <div class="flex w-full flex-col gap-3">
-      <div class="flex w-full items-center justify-between">
+      <div class="flex w-full items-center justify-between" formArrayName="lessons">
         <span class="label-uppercase">Aulas</span>
 
         <button

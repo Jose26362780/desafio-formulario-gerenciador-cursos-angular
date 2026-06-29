@@ -25,8 +25,8 @@ Use este checklist para acompanhar a entrega por fase, com prioridade e estimati
 - [x] Criar formulário reativo com FormGroup principal (nome, descrição, categoria)
 - [x] Implementar FormArray de módulos
 - [x] Implementar FormArray de aulas dentro de cada módulo
-- [ ] Adicionar botões para adicionar e remover módulos
-- [ ] Adicionar botões para adicionar e remover aulas
+- [x] Adicionar botões para adicionar e remover módulos
+- [x] Adicionar botões para adicionar e remover aulas
 
 ## Fase 4 - Regras e validações
 

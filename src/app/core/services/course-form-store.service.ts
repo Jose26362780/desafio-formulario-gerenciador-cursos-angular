@@ -5,28 +5,28 @@ import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@ang
   providedIn: 'root',
 })
 export class CourseFormStoreService {
-  private fb = inject(FormBuilder);
+  private readonly _fb = inject(FormBuilder);
 
   //Estruturas do Formulario Com FormBuilder
 
-  public readonly courseForm = this.fb.group({
-    informations: this.fb.group({
+  public readonly courseForm = this._fb.group({
+    informations: this._fb.group({
       name: ['', Validators.required],
       category: [''],
       description: ['', Validators.required],
     }),
-    modules: this.fb.array([this.createModuleGroup()]),
+    modules: this._fb.array([this.createModuleGroup()]),
   });
 
   private createModuleGroup(): FormGroup {
-    return this.fb.group({
+    return this._fb.group({
       name: ['', Validators.required],
-      lessons: this.fb.array([this.createLessonGroup()], [Validators.required]),
+      lessons: this._fb.array([this.createLessonGroup()], [Validators.required]),
     });
   }
 
   private createLessonGroup(): FormGroup {
-    return this.fb.group({
+    return this._fb.group({
       name: ['', Validators.required],
     });
   }
@@ -68,5 +68,33 @@ export class CourseFormStoreService {
     this.courseForm.reset();
     this.modulesFormArray.clear();
     this.addModule();
+  }
+
+  // Metodo para popular Formulario na edição
+
+  patchCourseData(courseData: any): void {
+    this.courseForm.patchValue({
+      informations: courseData.informations,
+    });
+
+    // Limpa os Modulos existentes e Adiciona os Novos
+
+    this.modulesFormArray.clear();
+    courseData.modules?.forEach((module: any) => {
+      const moduleGroup = this.createModuleGroup();
+      moduleGroup.patchValue({ name: module.name });
+
+      //Limpa os modulos existentes e Adiciona os novos
+
+      const lessonsArray = moduleGroup.get('lessons') as FormArray;
+      lessonsArray.clear();
+      module.lessons?.forEach((lesson: any) => {
+        const lessonGroup = this.createLessonGroup();
+        lessonGroup.patchValue(lesson);
+        lessonsArray.push(lessonGroup);
+      });
+
+      this.modulesFormArray.push(moduleGroup);
+    });
   }
 }
