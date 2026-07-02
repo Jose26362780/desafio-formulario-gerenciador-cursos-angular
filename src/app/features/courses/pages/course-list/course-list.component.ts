@@ -5,6 +5,7 @@ import { EmptySearchResultComponent } from '../../components/empty-search-result
 import { Observable, of } from 'rxjs';
 import { CourseModel } from '../../../../shared/models/course-model';
 import { CourseCardFilterComponent } from '../../components/course-card-filter/course-card-filter.component';
+import { CourseService } from '../../../../core/services/course.service';
 
 @Component({
   selector: 'app-course-list',
@@ -19,6 +20,7 @@ import { CourseCardFilterComponent } from '../../components/course-card-filter/c
 })
 export class CourseListComponent implements OnInit {
   public currentView: 'grid' | 'list' = 'grid'; // 'grid' como padrão
+  private courseService = inject(CourseService);
 
   // ==================================================
   // ============== CONTROLES MANUAIS =================
@@ -178,17 +180,20 @@ export class CourseListComponent implements OnInit {
   isSearching = false;
 
   ngOnInit(): void {
-    // Define a lista de cursos com base nos controles manuais
-    if (this.forceEmptyState) {
-      this.allCourses = [];
-    } else if (this.forceNoResultsState) {
-      this.allCourses = this.mockCourses; // Temos cursos, mas a busca não retornará nada
-    } else {
-      this.allCourses = this.mockCourses;
-    }
+    this.loadCourses();
+  }
 
-    // Inicializa a exibição
-    this.onSearchChanged('');
+  loadCourses(): void {
+    this.courseService.getAll().subscribe((courses) => {
+      this.allCourses = courses;
+      this.onSearchChanged('');
+    });
+  }
+
+  onDeleteCourse(courseId: string): void {
+    this.courseService.delete(courseId).subscribe(() => {
+      this.loadCourses();
+    });
   }
 
   onSearchChanged(searchTerm: string): void {

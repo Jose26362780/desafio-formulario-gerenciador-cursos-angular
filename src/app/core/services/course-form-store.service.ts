@@ -1,100 +1,89 @@
 import { inject, Injectable } from '@angular/core';
-import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import {
+  AbstractControl,
+  FormArray,
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  ValidationErrors,
+  ValidatorFn,
+  Validators,
+} from '@angular/forms';
 
-@Injectable({
-  providedIn: 'root',
-})
-export class CourseFormStoreService {
-  private readonly _fb = inject(FormBuilder);
+export class CourseFormFactoryService {
+  private readonly fb = inject(FormBuilder);
 
-  //Estruturas do Formulario Com FormBuilder
+  // Form principal
+  createCourseForm(): FormGroup {
+    return this.fb.group({
+      informations: this.createInformationsGroup(),
+      modules: this.fb.array([this.createModuleGroup()], [this.minArrayLengthValidator(1)]),
+    });
+  }
 
-  public readonly courseForm = this._fb.group({
-    informations: this._fb.group({
-      name: ['', Validators.required],
+  // Grupo de informações
+  createInformationsGroup(): FormGroup {
+    return this.fb.group({
+      name: ['', [Validators.required, Validators.minLength(3)]],
       category: [''],
-      description: ['', Validators.required],
-    }),
-    modules: this._fb.array([this.createModuleGroup()]),
-  });
-
-  private createModuleGroup(): FormGroup {
-    return this._fb.group({
-      name: ['', Validators.required],
-      lessons: this._fb.array([this.createLessonGroup()], [Validators.required]),
+      description: ['', [Validators.required, Validators.minLength(10)]],
     });
   }
 
-  private createLessonGroup(): FormGroup {
-    return this._fb.group({
-      name: ['', Validators.required],
+  // Grupo de módulo
+  createModuleGroup(): FormGroup {
+    return this.fb.group({
+      name: ['', [Validators.required, Validators.minLength(3)]],
+      lessons: this.fb.array([this.createLessonGroup()], [this.minArrayLengthValidator(1)]),
     });
   }
 
-  // Getters para ajudar nos acessos nos componentes e no html
-
-  get informationsFormGroup(): FormGroup {
-    return this.courseForm.get('informations') as FormGroup;
-  }
-
-  get modulesFormArray(): FormArray {
-    return this.courseForm.get('modules') as FormArray;
-  }
-
-  // função para passar como indice as lições
-  getLessonsFormArray(moduleIndex: number): FormArray {
-    return this.modulesFormArray.at(moduleIndex).get('lessons') as FormArray;
-  }
-
-  // metodos que os componente vão chamar
-
-  addModule(): void {
-    this.modulesFormArray.push(this.createModuleGroup());
-  }
-
-  removeModule(index: number): void {
-    this.modulesFormArray.removeAt(index);
-  }
-
-  addLesson(moduleIndex: number): void {
-    this.getLessonsFormArray(moduleIndex).push(this.createLessonGroup());
-  }
-
-  removeLesson(moduleIndex: number, lessonsIndex: number): void {
-    this.getLessonsFormArray(moduleIndex).removeAt(lessonsIndex);
-  }
-
-  resetForm(): void {
-    this.courseForm.reset();
-    this.modulesFormArray.clear();
-    this.addModule();
-  }
-
-  // Metodo para popular Formulario na edição
-
-  patchCourseData(courseData: any): void {
-    this.courseForm.patchValue({
-      informations: courseData.informations,
+  // Grupo de aula
+  createLessonGroup(): FormGroup {
+    return this.fb.group({
+      name: ['', [Validators.required, Validators.minLength(3)]],
     });
+  }
 
-    // Limpa os Modulos existentes e Adiciona os Novos
+  // Validator customizado para arrays
+  private minArrayLengthValidator(min: number): ValidatorFn {
+    return (control: AbstractControl): ValidationErrors | null => {
+      const array = control as FormArray;
+      return array.length >= min
+        ? null
+        : { minArrayLength: { required: min, actual: array.length } };
+    };
+  }
 
-    this.modulesFormArray.clear();
-    courseData.modules?.forEach((module: any) => {
-      const moduleGroup = this.createModuleGroup();
-      moduleGroup.patchValue({ name: module.name });
+  // Helper para reconstruir form com dados da API (edição)
+  createCourseFormFromApi(courseData: any): FormGroup {
+    const modules = this.fb.array(
+      courseData.modules?.map((module: any) =>
+        this.fb.group({
+          name: [module.name, [Validators.required, Validators.minLength(3)]],
+          lessons: this.fb.array(
+            module.lessons?.map((lesson: any) =>
+              this.fb.group({
+                name: [lesson.name, [Validators.required, Validators.minLength(3)]],
+              }),
+            ) ?? [this.createLessonGroup()],
+            [this.minArrayLengthValidator(1)],
+          ),
+        }),
+      ) ?? [this.createModuleGroup()],
+      [this.minArrayLengthValidator(1)],
+    );
 
-      //Limpa os modulos existentes e Adiciona os novos
-
-      const lessonsArray = moduleGroup.get('lessons') as FormArray;
-      lessonsArray.clear();
-      module.lessons?.forEach((lesson: any) => {
-        const lessonGroup = this.createLessonGroup();
-        lessonGroup.patchValue(lesson);
-        lessonsArray.push(lessonGroup);
-      });
-
-      this.modulesFormArray.push(moduleGroup);
+    return this.fb.group({
+      informations: this.fb.group({
+        name: [courseData.informations?.name ?? '', [Validators.required, Validators.minLength(3)]],
+        category: [courseData.informations?.category ?? ''],
+        description: [
+          courseData.informations?.description ?? '',
+          [Validators.required, Validators.minLength(10)],
+        ],
+      }),
+      modules,
     });
   }
 }

@@ -13,15 +13,19 @@ import { CourseService } from '../../../../core/services/course.service';
 })
 export class CourseDetailsComponent {
   private activatedRoute = inject(ActivatedRoute);
+  private courseService = inject(CourseService);
   courseId: string = '';
   course!: CourseModel;
 
   ngOnInit(): void {
     this.courseId = this.activatedRoute.snapshot.paramMap.get('id') ?? '';
 
-    // Você vai precisar carregar o curso via service aqui
-    // this.courseService.getCourseById(this.courseId).subscribe(course => {
-    //   this.course = course;
-    // });
+    if (!this.courseId) {
+      return;
+    }
+
+    this.courseService.getById(this.courseId).subscribe((course) => {
+      this.course = course;
+    });
   }
 }

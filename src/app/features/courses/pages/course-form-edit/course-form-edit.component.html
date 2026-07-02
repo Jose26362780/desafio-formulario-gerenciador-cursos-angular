@@ -26,23 +26,20 @@
       <p class="text-sm text-[var(--text-medium)] font-normal">Atualize as Informações do curso</p>
     </header>
 
-    <form [formGroup]="courseFormStore.courseForm" (ngSubmit)="onSubmit()">
-
-
-      <app-course-form-section-one-info
-        [informationsFormGroup]="courseFormStore.informationsFormGroup"
-      />
+    <form [formGroup]="courseForm" (ngSubmit)="onSubmit()">
+      <app-course-form-section-one-info [informationsFormGroup]="informationsFormGroup" />
       <app-course-form-section-two-modules
-        [modulesFormArray]="courseFormStore.modulesFormArray"
-        (addModule)="courseFormStore.addModule()"
-        (removeModule)="courseFormStore.removeModule($event)"
-        (addLesson)="courseFormStore.addLesson($event.moduleIndex)"
-        (removeLesson)="courseFormStore.removeLesson($event.moduleIndex, $event.lessonIndex)"
+        [modulesFormArray]="modulesFormArray"
+        (addModule)="onAddModule()"
+        (removeModule)="onRemoveModule($event)"
+        (addLesson)="onAddLesson($event.moduleIndex)"
+        (removeLesson)="onRemoveLesson($event.moduleIndex, $event.lessonIndex)"
       />
 
       <div class="flex items-end justify-end gap-3 pb-7">
         <button
           type="button"
+          (click)="onCancel()"
           class="inline-flex items-center justify-center gap-2 rounded-[6px] border border-[var(--border)] bg-[var(--bg-900)] pt-[9.5px] pr-[20px] pb-[10px] pl-[20px] text-white hover:bg-[var(--border)] hover:border-[var(--border)] hover:shadow-[0_0_20px_rgba(42,48,64,0.60)] focus:outline-none focus:ring-1 focus:ring-[var(--text-muted)]"
         >
           Cancelar
@@ -50,7 +47,7 @@
 
         <button
           type="submit"
-          [disabled]="courseFormStore.courseForm.invalid"
+          [disabled]="courseForm.invalid"
           class="inline-flex items-center justify-center gap-2 rounded-[6px] bg-[var(--primary)] pt-[9.5px] pr-[15.333px] pb-[10.5px] pl-[20px] text-white transition-shadow ease-out hover:bg-[#00C98B] hover:shadow-[0_0_20px_rgba(0,179,126,0.30)] focus:outline-none focus:ring-2 focus:ring-[rgba(0,179,126,0.25)]"
         >
           Salvar alterações

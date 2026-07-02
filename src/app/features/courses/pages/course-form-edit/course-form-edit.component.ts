@@ -1,9 +1,10 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { CourseFormSectionOneInfoComponent } from '../../components/course-form-section-one-info/course-form-section-one-info.component';
 import { CourseFormSectionTwoModulesComponent } from '../../components/course-form-section-two-modules/course-form-section-two-modules.component';
 import { CourseService } from '../../../../core/services/course.service';
-import { CourseFormStoreService } from '../../../../core/services/course-form-store.service';
-import { ReactiveFormsModule } from '@angular/forms';
+import { CourseFormFactoryService } from '../../../../core/services/course-form-store.service';
+import { FormArray, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-course-form-edit',
@@ -15,50 +16,79 @@ import { ReactiveFormsModule } from '@angular/forms';
   ],
   templateUrl: './course-form-edit.component.html',
 })
-export class CourseFormEditComponent {
-  protected readonly courseFormStore = inject(CourseFormStoreService);
-  private readonly _courseService = inject(CourseService);
+export class CourseFormEditComponent implements OnInit {
+  private readonly courseFormFactory = inject(CourseFormFactoryService);
+  private readonly courseService = inject(CourseService);
+  private readonly route = inject(ActivatedRoute);
+
+  protected courseForm: FormGroup = this.courseFormFactory.createCourseForm();
+  protected courseId = '';
 
   ngOnInit(): void {
-    // Pega o ID do curso da rota
-    // const courseID = this.route.snapshot.params['id'];
-    // Carrega os dados do curso ( simulação - voce pegaria de uma API )
-    // this.loadCourseData(courseID);
+    const id = this.route.snapshot.paramMap.get('id');
+
+    if (!id) {
+      return;
+    }
+
+    this.courseId = id;
+    this.loadCourseData(id);
   }
 
   private loadCourseData(courseId: string): void {
-    // Simulação - Substitua por sua chamada de API
+    this.courseService.getById(courseId).subscribe((courseData) => {
+      this.courseForm = this.courseFormFactory.createCourseFormFromApi(courseData);
+    });
+  }
 
-    const courseData = {
-      informations: {
-        name: 'Angular Avançado',
-        category: 'Frontend',
-        description: 'Curso Completo de Angular',
-      },
-      modules: [
-        {
-          name: 'Modulo 1',
-          lessons: [{ name: 'Aula 1.1' }, { name: 'Aula 1.2' }],
-        },
-        {
-          name: 'Modulo 2',
-          lessons: [{ name: 'Aula 2.1' }, { name: 'Aula 2.2' }],
-        },
-      ],
-    };
+  get informationsFormGroup(): FormGroup {
+    return this.courseForm.get('informations') as FormGroup;
+  }
 
-    // Popula o formulario com os dados existentes
-    this.courseFormStore.patchCourseData(courseData);
+  get modulesFormArray(): FormArray {
+    return this.courseForm.get('modules') as FormArray;
+  }
+
+  onAddModule(): void {
+    this.modulesFormArray.push(this.courseFormFactory.createModuleGroup());
+  }
+
+  onRemoveModule(index: number): void {
+    this.modulesFormArray.removeAt(index);
+  }
+
+  onAddLesson(moduleIndex: number): void {
+    const lessonsArray = this.modulesFormArray.at(moduleIndex).get('lessons') as FormArray;
+    lessonsArray.push(this.courseFormFactory.createLessonGroup());
+  }
+
+  onRemoveLesson(moduleIndex: number, lessonIndex: number): void {
+    const lessonsArray = this.modulesFormArray.at(moduleIndex).get('lessons') as FormArray;
+    lessonsArray.removeAt(lessonIndex);
   }
 
   onSubmit(): void {
-    if (this.courseFormStore.courseForm.valid) {
-      const formData = this.courseFormStore.courseForm.value;
-      console.log('Atualizar Curso: ', formData);
-
-      // Aqui Voce Chamaria seu Service de API para atualizar o curso
-    } else {
-      this.courseFormStore.courseForm.markAllAsTouched();
+    if (this.courseForm.invalid) {
+      this.courseForm.markAllAsTouched();
+      return;
     }
+
+    this.courseService.update(this.courseId, this.courseForm.value).subscribe({
+      next: () => {
+        console.log('Curso atualizado com sucesso');
+      },
+      error: (error) => {
+        console.error('Erro ao atualizar curso', error);
+      },
+    });
+  }
+
+  onCancel(): void {
+    if (this.courseId) {
+      this.loadCourseData(this.courseId);
+      return;
+    }
+
+    this.courseForm = this.courseFormFactory.createCourseForm();
   }
 }

@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { AbstractControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-course-form-section-one-info',
@@ -8,4 +8,12 @@ import { FormGroup, ReactiveFormsModule } from '@angular/forms';
 })
 export class CourseFormSectionOneInfoComponent {
   @Input({ required: true }) informationsFormGroup!: FormGroup;
+
+  get nameControl() {
+    return this.informationsFormGroup.get('name');
+  }
+
+  get descriptionControl(): AbstractControl | null {
+    return this.informationsFormGroup.get('description');
+  }
 }

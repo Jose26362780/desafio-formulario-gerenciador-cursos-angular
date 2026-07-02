@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { FormArray, ReactiveFormsModule } from '@angular/forms';
+import { FormArray, FormGroup, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-course-form-section-two-modules',
@@ -15,7 +15,15 @@ export class CourseFormSectionTwoModulesComponent {
   @Output() addLesson = new EventEmitter<{ moduleIndex: number }>();
   @Output() removeLesson = new EventEmitter<{ moduleIndex: number; lessonIndex: number }>();
 
+  getModuleGroup(moduleIndex: number): FormGroup {
+    return this.modulesFormArray.at(moduleIndex) as FormGroup;
+  }
+
   getLessonsArray(moduleIndex: number): FormArray {
     return this.modulesFormArray.at(moduleIndex).get('lessons') as FormArray;
+  }
+
+  getLessonGroup(moduleIndex: number, lessonIndex: number): FormGroup {
+    return this.getLessonsArray(moduleIndex).at(lessonIndex) as FormGroup;
   }
 }

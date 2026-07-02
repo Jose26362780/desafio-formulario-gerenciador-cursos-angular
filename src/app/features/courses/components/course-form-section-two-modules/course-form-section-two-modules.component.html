@@ -1,7 +1,6 @@
 <section
   class="flex w-[1136px] mt-5 mb-4 shrink-0 flex-col items-start gap-[24.1px] rounded-[14px] border border-[var(--border)] bg-[var(--surface-800)] pt-[27.9px] px-7 pb-7"
 >
-  <!-- Cabeçalho da seção -->
   <header class="flex items-start gap-4">
     <span class="text-[32px] font-bold leading-none text-[var(--primary)]">02</span>
 
@@ -14,26 +13,30 @@
   </header>
 
   @for (moduleCtrl of modulesFormArray.controls; track $index; let moduleIndex = $index) {
-    <article class="module flex w-full flex-col gap-5" [formGroup]="$any(moduleCtrl)">
+    <article class="module flex w-full flex-col gap-5" [formGroup]="getModuleGroup(moduleIndex)">
       <div class="flex w-full items-center justify-between">
         <span class="text-xs font-bold uppercase tracking-[0.64px] text-[var(--primary)]">
           Módulo {{ moduleIndex + 1 }}
         </span>
 
-        <button
-          type="button"
-          class="inline-flex items-center gap-2 text-sm text-[var(--text-muted)] transition-colors hover:text-[var(--danger)]"
-          (click)="removeModule.emit(moduleIndex)"
-        >
-          <img src="/Close.svg" alt="" class="h-3 w-3 opacity-70" />
-          Remover módulo
-        </button>
+        @if (modulesFormArray.length > 1) {
+          <button
+            type="button"
+            class="inline-flex items-center gap-2 text-sm text-[var(--text-muted)] transition-colors hover:text-[var(--danger)]"
+            (click)="removeModule.emit(moduleIndex)"
+          >
+            <img src="/Close.svg" alt="" class="h-3 w-3 opacity-70" />
+            Remover módulo
+          </button>
+        }
       </div>
 
+      <!-- Nome do módulo -->
       <div class="flex w-full flex-col gap-2">
         <label class="label-uppercase" [for]="'module-name-' + moduleIndex">
           Nome do módulo <span class="text-[var(--danger)]">*</span>
         </label>
+
         <input
           [id]="'module-name-' + moduleIndex"
           type="text"
@@ -41,8 +44,20 @@
           class="w-full text-sm !text-[var(--text-high)] outline-none !border !border-[var(--border)] rounded-[6px] focus:!text-[var(--primary)] focus:!border-[var(--primary)] focus:shadow-[0_0_0_2.613px_rgba(0,179,126,0.10)] transition-all duration-300 ease-out"
           placeholder="Ex: Fundamentos do HTML"
         />
+
+        @if (moduleCtrl.get('name')?.touched && moduleCtrl.get('name')?.errors) {
+          <span class="text-sm text-red-500">
+            @if (moduleCtrl.get('name')?.hasError('required')) {
+              Nome do módulo é obrigatório
+            }
+            @if (moduleCtrl.get('name')?.hasError('minlength')) {
+              Nome do módulo deve ter pelo menos 3 caracteres
+            }
+          </span>
+        }
       </div>
 
+      <!-- Aulas -->
       <div class="flex w-full flex-col gap-3">
         <div class="flex w-full items-center justify-between">
           <span class="label-uppercase">Aulas</span>
@@ -52,7 +67,8 @@
             class="inline-flex h-[39px] items-center gap-2 rounded-[6px] border border-[var(--primary-opaque-25)] bg-[var(--primary-opaque-12)] px-4 text-xs font-bold uppercase tracking-[0.64px] text-[var(--primary)] transition-colors hover:bg-[var(--primary-opaque-25)]"
             (click)="addLesson.emit({ moduleIndex })"
           >
-            <img src="/add-green.svg" alt="" class="h-3 w-3" /> Aula
+            <img src="/add-green.svg" alt="" class="h-3 w-3" />
+            Aula
           </button>
         </div>
 
@@ -61,29 +77,47 @@
           track $index;
           let lessonIndex = $index
         ) {
-          <div class="flex w-full items-center gap-3" [formGroup]="$any(lessonCtrl)">
-            <span
-              class="inline-flex h-[39px] w-[39px] shrink-0 items-center justify-center rounded-[6px] border border-[var(--border)] bg-[var(--surface-700)] text-sm font-bold text-[var(--text-medium)]"
+          <div class="flex w-full flex-col gap-2">
+            <div
+              class="flex w-full items-center gap-3"
+              [formGroup]="getLessonGroup(moduleIndex, lessonIndex)"
             >
-              {{ lessonIndex + 1 }}
-            </span>
+              <span
+                class="inline-flex h-[39px] w-[39px] shrink-0 items-center justify-center rounded-[6px] border border-[var(--border)] bg-[var(--surface-700)] text-sm font-bold text-[var(--text-medium)]"
+              >
+                {{ lessonIndex + 1 }}
+              </span>
 
-            <input
-              [id]="'lesson-name-' + moduleIndex + '-' + lessonIndex"
-              type="text"
-              formControlName="name"
-              class="h-[39px] w-full text-sm !text-[var(--text-high)] outline-none !border !border-[var(--border)] rounded-[6px] focus:!text-[var(--primary)] focus:!border-[var(--primary)] focus:shadow-[0_0_0_2.613px_rgba(0,179,126,0.10)] transition-all duration-300 ease-out"
-              placeholder="Nome da aula"
-            />
+              <input
+                [id]="'lesson-name-' + moduleIndex + '-' + lessonIndex"
+                type="text"
+                formControlName="name"
+                class="h-[39px] w-full text-sm !text-[var(--text-high)] outline-none !border !border-[var(--border)] rounded-[6px] focus:!text-[var(--primary)] focus:!border-[var(--primary)] focus:shadow-[0_0_0_2.613px_rgba(0,179,126,0.10)] transition-all duration-300 ease-out"
+                placeholder="Nome da aula"
+              />
 
-            <button
-              type="button"
-              class="shrink-0 text-[var(--text-muted)] transition-colors hover:text-[var(--danger)]"
-              aria-label="Remover aula"
-              (click)="removeLesson.emit({ moduleIndex, lessonIndex })"
-            >
-              <img src="/Close.svg" alt="" class="h-3 w-3 opacity-50" />
-            </button>
+              @if (getLessonsArray(moduleIndex).length > 1) {
+                <button
+                  type="button"
+                  class="shrink-0 text-[var(--text-muted)] transition-colors hover:text-[var(--danger)]"
+                  aria-label="Remover aula"
+                  (click)="removeLesson.emit({ moduleIndex, lessonIndex })"
+                >
+                  <img src="/Close.svg" alt="" class="h-3 w-3 opacity-50" />
+                </button>
+              }
+            </div>
+
+            @if (lessonCtrl.get('name')?.touched && lessonCtrl.get('name')?.errors) {
+              <span class="text-sm text-red-500">
+                @if (lessonCtrl.get('name')?.hasError('required')) {
+                  Nome da aula é obrigatório
+                }
+                @if (lessonCtrl.get('name')?.hasError('minlength')) {
+                  Nome da aula deve ter pelo menos 3 caracteres
+                }
+              </span>
+            }
           </div>
         }
       </div>

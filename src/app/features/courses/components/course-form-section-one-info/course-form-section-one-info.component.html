@@ -12,7 +12,7 @@
   </header>
 
   <!-- Campos do formulário -->
-  <div class="flex w-full flex-col gap-6">
+  <div class="flex w-full flex-col gap-6" [formGroup]="informationsFormGroup">
     <!-- Linha 1: Nome + Categoria -->
     <div class="grid w-full grid-cols-2 gap-6">
       <div class="flex flex-col gap-2">
@@ -26,6 +26,9 @@
           class="w-full focus:border-[#00B37E] focus:shadow-[0_0_0_2.613px_rgba(0,179,126,0.10)] transition-all duration-300 ease-out"
           placeholder="Ex: Desenvolvimento Web Fullstack"
         />
+        @if (nameControl?.invalid && nameControl.touched) {
+          <span>Nome obrigatório</span>
+        }
       </div>
 
       <div class="flex flex-col gap-2">
@@ -47,9 +50,21 @@
       </label>
       <textarea
         id="course-description"
+        formControlName="description"
         class="textarea w-full"
         placeholder="Descreva o curso (mínimo 10 caracteres)"
       ></textarea>
     </div>
+    @if (descriptionControl?.touched && descriptionControl.errors) {
+      <span class="text-sm text-red-500">
+        @if (descriptionControl.hasError('required')) {
+          Descrição é obrigatória
+        }
+
+        @if (descriptionControl.hasError('minlength')) {
+          Descrição deve ter pelo menos 10 caracteres
+        }
+      </span>
+    }
   </div>
 </section>
