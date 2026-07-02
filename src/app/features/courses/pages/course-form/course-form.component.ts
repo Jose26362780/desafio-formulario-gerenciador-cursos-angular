@@ -1,20 +1,25 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { CourseFormSectionOneInfoComponent } from '../../components/course-form-section-one-info/course-form-section-one-info.component';
 import { CourseFormSectionTwoModulesComponent } from '../../components/course-form-section-two-modules/course-form-section-two-modules.component';
 import { CourseService } from '../../../../core/services/course.service';
 import { CourseFormStoreService } from '../../../../core/services/course-form-store.service';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-course-form',
   standalone: true,
-  imports: [CourseFormSectionOneInfoComponent, CourseFormSectionTwoModulesComponent],
+  imports: [
+    CourseFormSectionOneInfoComponent,
+    CourseFormSectionTwoModulesComponent,
+    ReactiveFormsModule,
+  ],
   templateUrl: './course-form.component.html',
 })
-export class CourseFormComponent {
+export class CourseFormComponent implements OnInit {
   protected readonly courseFormStore = inject(CourseFormStoreService);
   private readonly _courseService = inject(CourseService);
 
-  ngOninit(): void {
+  ngOnInit(): void {
     this.courseFormStore.resetForm();
   }
 

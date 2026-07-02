@@ -1,9 +1,9 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { FormArray } from '@angular/forms';
+import { FormArray, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-course-form-section-two-modules',
-  imports: [],
+  imports: [ReactiveFormsModule],
   templateUrl: './course-form-section-two-modules.component.html',
 })
 export class CourseFormSectionTwoModulesComponent {

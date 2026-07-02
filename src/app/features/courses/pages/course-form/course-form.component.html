@@ -25,7 +25,7 @@
     />
     <app-course-form-section-two-modules
       [modulesFormArray]="courseFormStore.modulesFormArray"
-      [addModule]="courseFormStore.addModule()"
+      (addModule)="courseFormStore.addModule()"
       (removeModule)="courseFormStore.removeModule($event)"
       (addLesson)="courseFormStore.addLesson($event.moduleIndex)"
       (removeLesson)="courseFormStore.removeLesson($event.moduleIndex, $event.lessonIndex)"

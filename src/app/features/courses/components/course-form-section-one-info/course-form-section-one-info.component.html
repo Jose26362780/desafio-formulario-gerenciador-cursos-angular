@@ -1,7 +1,7 @@
 <section
   class="flex w-[1136px] h-[343px] shrink-0 flex-col items-start gap-[24.1px] rounded-[14px] border border-[var(--border)] bg-[var(--surface-800)] pt-[27.9px] px-7 pb-7"
-  [formGroup]="informationsFormGroup"
 >
+  <!-- Cabeçalho da seção -->
   <header class="flex items-start gap-4">
     <span class="text-[32px] font-bold leading-none text-[var(--primary)]">01</span>
 
@@ -11,7 +11,9 @@
     </div>
   </header>
 
+  <!-- Campos do formulário -->
   <div class="flex w-full flex-col gap-6">
+    <!-- Linha 1: Nome + Categoria -->
     <div class="grid w-full grid-cols-2 gap-6">
       <div class="flex flex-col gap-2">
         <label class="label-uppercase" for="course-name">
@@ -21,7 +23,7 @@
           id="course-name"
           formControlName="name"
           type="text"
-          class="w-full text-sm text-[var(--text-high)] outline-none !border-transparent rounded-[6px] focus:!border-[var(--primary)] focus:shadow-[0_0_0_2.613px_rgba(0,179,126,0.10)] transition-all duration-300 ease-out"
+          class="w-full focus:border-[#00B37E] focus:shadow-[0_0_0_2.613px_rgba(0,179,126,0.10)] transition-all duration-300 ease-out"
           placeholder="Ex: Desenvolvimento Web Fullstack"
         />
       </div>
@@ -32,7 +34,7 @@
           id="course-category"
           formControlName="category"
           type="text"
-          class="w-full text-sm text-[var(--text-high)] outline-none !border-transparent rounded-[6px] focus:!border-[var(--primary)] focus:shadow-[0_0_0_2.613px_rgba(0,179,126,0.10)] transition-all duration-300 ease-out"
+          class="w-full"
           placeholder="Ex: Frontend, Backend..."
         />
       </div>
@@ -45,8 +47,7 @@
       </label>
       <textarea
         id="course-description"
-        formControlName="description"
-        class="textarea w-full text-sm text-[var(--text-high)] outline-none !border-transparent rounded-[6px] focus:!border-[var(--primary)] focus:shadow-[0_0_0_2.613px_rgba(0,179,126,0.10)] transition-all duration-300 ease-out"
+        class="textarea w-full"
         placeholder="Descreva o curso (mínimo 10 caracteres)"
       ></textarea>
     </div>

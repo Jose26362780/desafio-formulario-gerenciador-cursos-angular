@@ -3,11 +3,16 @@ import { CourseFormSectionOneInfoComponent } from '../../components/course-form-
 import { CourseFormSectionTwoModulesComponent } from '../../components/course-form-section-two-modules/course-form-section-two-modules.component';
 import { CourseService } from '../../../../core/services/course.service';
 import { CourseFormStoreService } from '../../../../core/services/course-form-store.service';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-course-form-edit',
   standalone: true,
-  imports: [CourseFormSectionOneInfoComponent, CourseFormSectionTwoModulesComponent],
+  imports: [
+    CourseFormSectionOneInfoComponent,
+    CourseFormSectionTwoModulesComponent,
+    ReactiveFormsModule,
+  ],
   templateUrl: './course-form-edit.component.html',
 })
 export class CourseFormEditComponent {

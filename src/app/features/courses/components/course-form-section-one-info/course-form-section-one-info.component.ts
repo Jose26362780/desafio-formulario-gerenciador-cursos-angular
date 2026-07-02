@@ -1,9 +1,9 @@
 import { Component, Input } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { FormGroup, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-course-form-section-one-info',
-  imports: [],
+  imports: [ReactiveFormsModule],
   templateUrl: './course-form-section-one-info.component.html',
 })
 export class CourseFormSectionOneInfoComponent {
