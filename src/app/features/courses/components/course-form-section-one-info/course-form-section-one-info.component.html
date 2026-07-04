@@ -16,14 +16,17 @@
     <!-- Linha 1: Nome + Categoria -->
     <div class="grid w-full grid-cols-2 gap-6">
       <div class="flex flex-col gap-2">
-        <label class="label-uppercase" for="course-name">
+        <label
+          class="label-uppercase hover:border-[#00B37E] focus:shadow-[0_0_0_2.613px_rgba(0,179,126,0.10)] transition-all duration-300 ease-out"
+          for="course-name"
+        >
           Nome do curso <span class="text-[var(--danger)]">*</span>
         </label>
         <input
           id="course-name"
           formControlName="name"
           type="text"
-          class="w-full focus:border-[var(--primary)] focus:shadow-[0_0_0_2.613px_rgba(0,179,126,0.10)] transition-all duration-300 ease-out"
+          class="w-full focus:shadow-[0_0_0_2.613px_rgba(0,179,126,0.10)] transition-all duration-300 ease-out"
           placeholder="Ex: Desenvolvimento Web Fullstack"
         />
         @if (nameControl.invalid && nameControl.touched) {

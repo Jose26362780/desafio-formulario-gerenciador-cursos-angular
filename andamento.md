@@ -43,5 +43,5 @@ Use este checklist para acompanhar a entrega por fase, com prioridade e estimati
 
 ## Fase 6 - Finalização
 
-- [] Implementar botão de reset do formulário
-- [] Revisar fluxo geral e consistência visual
+- [x] Implementar botão de reset do formulário
+- [x] Revisar fluxo geral e consistência visual

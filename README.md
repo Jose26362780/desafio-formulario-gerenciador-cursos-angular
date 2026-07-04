@@ -357,15 +357,6 @@ npm run test
 6. **Validação do Formulário** - Impede envio se houver erros
 7. **Feedback Visual** - Erros destacados em tempo real
 
-## 🚀 Próximos Passos (Evolução)
-
-Depois de dominar essa estrutura, você pode evoluir para:
-
-- **Repository Pattern** - Abstrair chamadas HTTP
-- **State Management** - Usar BehaviorSubjects ou NGRX
-- **Smart/Presentational** - Separar componentes por responsabilidade
-- **Padrão Facade** - Orquestrar múltiplos serviços
-
 ---
 
 Desenvolvido como desafio do módulo de Reactive Forms - Rocketseat 🚀
