@@ -10,9 +10,9 @@
 
     <div class="flex items-center gap-2">
       <button
+        type="button"
         (click)="onEdit()"
         aria-label="Editar curso"
-        routerLink=":id"
         class="flex group p-1.5 text-[var(--text-low)] transition-colors hover:bg-[var(--surface-secondary)] hover:text-[var(--text-high)] rounded-md border border-[var(--border)]"
       >
         <svg
@@ -36,6 +36,7 @@
         </svg>
       </button>
       <button
+        type="button"
         (click)="onDelete()"
         aria-label="Excluir curso"
         class="group rounded-md border border-[var(--border)] p-1.5 text-[var(--text-low)] transition-colors hover:bg-[var(--surface-secondary)] hover:text-[var(--text-high)] hover:border-[color:var(--danger)]"
@@ -109,6 +110,7 @@
 @if (showDeleteModal) {
   <app-confirm-delete-couse-dialog
     [courseName]="course.name"
+    [courseId]="course.id || ''"
     (cancel)="onCancelDelete()"
     (confirmDelete)="confirmDeleteCourse($event)"
   ></app-confirm-delete-couse-dialog>

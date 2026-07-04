@@ -3,46 +3,105 @@ import {
   AbstractControl,
   FormArray,
   FormBuilder,
-  FormControl,
   FormGroup,
   ValidationErrors,
   ValidatorFn,
   Validators,
 } from '@angular/forms';
+import { CourseModel } from '../../shared/models/course-model';
+import { LessonModel } from '../../shared/models/lesson-model';
+import { ModuleModel } from '../../shared/models/module-model';
 
+interface CourseFormLessonValue {
+  name: string;
+}
+
+interface CourseFormModuleValue {
+  name: string;
+  lessons: CourseFormLessonValue[];
+}
+
+interface CourseFormValue {
+  informations: {
+    name: string;
+    category: string;
+    description: string;
+  };
+  modules: CourseFormModuleValue[];
+}
+
+@Injectable({
+  providedIn: 'root',
+})
 export class CourseFormFactoryService {
   private readonly fb = inject(FormBuilder);
 
   // Form principal
-  createCourseForm(): FormGroup {
+  createCourseForm(courseData?: Partial<CourseModel>): FormGroup {
     return this.fb.group({
-      informations: this.createInformationsGroup(),
-      modules: this.fb.array([this.createModuleGroup()], [this.minArrayLengthValidator(1)]),
+      informations: this.createInformationsGroup(courseData),
+      modules: this.createModulesArray(courseData?.modules),
     });
   }
 
   // Grupo de informações
-  createInformationsGroup(): FormGroup {
+  createInformationsGroup(courseData?: Partial<CourseModel>): FormGroup {
     return this.fb.group({
-      name: ['', [Validators.required, Validators.minLength(3)]],
-      category: [''],
-      description: ['', [Validators.required, Validators.minLength(10)]],
+      name: [courseData?.name ?? '', [Validators.required, Validators.minLength(3)]],
+      category: [courseData?.category ?? '', [Validators.required, Validators.minLength(3)]],
+      description: [courseData?.description ?? '', [Validators.required, Validators.minLength(10)]],
     });
   }
 
   // Grupo de módulo
-  createModuleGroup(): FormGroup {
+  createModuleGroup(moduleData?: Partial<ModuleModel>): FormGroup {
     return this.fb.group({
-      name: ['', [Validators.required, Validators.minLength(3)]],
-      lessons: this.fb.array([this.createLessonGroup()], [this.minArrayLengthValidator(1)]),
+      name: [moduleData?.name ?? '', [Validators.required, Validators.minLength(3)]],
+      lessons: this.createLessonsArray(moduleData?.lessons),
     });
   }
 
   // Grupo de aula
-  createLessonGroup(): FormGroup {
+  createLessonGroup(lessonData?: Partial<LessonModel>): FormGroup {
     return this.fb.group({
-      name: ['', [Validators.required, Validators.minLength(3)]],
+      name: [lessonData?.name ?? '', [Validators.required, Validators.minLength(3)]],
     });
+  }
+
+  createCoursePayload(formValue: CourseFormValue): CourseModel {
+    return {
+      name: formValue.informations.name.trim(),
+      category: formValue.informations.category.trim(),
+      description: formValue.informations.description.trim(),
+      modules: formValue.modules.map((module) => ({
+        name: module.name.trim(),
+        lessons: module.lessons.map((lesson) => ({
+          name: lesson.name.trim(),
+        })),
+      })),
+    };
+  }
+
+  createCourseFormFromApi(courseData: CourseModel): FormGroup {
+    return this.createCourseForm(courseData);
+  }
+
+  private createModulesArray(modules?: ModuleModel[]): FormArray {
+    return this.fb.array(
+      modules?.length
+        ? modules.map((module) => this.createModuleGroup(module))
+        : [this.createModuleGroup()],
+      [this.minArrayLengthValidator(1)],
+    );
+  }
+
+  private createLessonsArray(lessons?: LessonModel[]): FormArray {
+    return this.fb.array(
+      lessons?.length
+        ? lessons.map((lesson) => this.createLessonGroup(lesson))
+        : [this.createLessonGroup()],
+      [this.minArrayLengthValidator(1)],
+    );
   }
 
   // Validator customizado para arrays
@@ -53,37 +112,5 @@ export class CourseFormFactoryService {
         ? null
         : { minArrayLength: { required: min, actual: array.length } };
     };
-  }
-
-  // Helper para reconstruir form com dados da API (edição)
-  createCourseFormFromApi(courseData: any): FormGroup {
-    const modules = this.fb.array(
-      courseData.modules?.map((module: any) =>
-        this.fb.group({
-          name: [module.name, [Validators.required, Validators.minLength(3)]],
-          lessons: this.fb.array(
-            module.lessons?.map((lesson: any) =>
-              this.fb.group({
-                name: [lesson.name, [Validators.required, Validators.minLength(3)]],
-              }),
-            ) ?? [this.createLessonGroup()],
-            [this.minArrayLengthValidator(1)],
-          ),
-        }),
-      ) ?? [this.createModuleGroup()],
-      [this.minArrayLengthValidator(1)],
-    );
-
-    return this.fb.group({
-      informations: this.fb.group({
-        name: [courseData.informations?.name ?? '', [Validators.required, Validators.minLength(3)]],
-        category: [courseData.informations?.category ?? ''],
-        description: [
-          courseData.informations?.description ?? '',
-          [Validators.required, Validators.minLength(10)],
-        ],
-      }),
-      modules,
-    });
   }
 }

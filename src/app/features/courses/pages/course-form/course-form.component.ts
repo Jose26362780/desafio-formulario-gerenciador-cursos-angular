@@ -15,15 +15,11 @@ import { FormArray, FormGroup, ReactiveFormsModule } from '@angular/forms';
   ],
   templateUrl: './course-form.component.html',
 })
-export class CourseFormComponent implements OnInit {
+export class CourseFormComponent {
   private readonly courseFormFactory = inject(CourseFormFactoryService);
   private readonly courseService = inject(CourseService);
 
-  courseForm!: FormGroup;
-
-  ngOnInit(): void {
-    this.courseForm = this.courseFormFactory.createCourseForm();
-  }
+  courseForm: FormGroup = this.courseFormFactory.createCourseForm();
 
   // Getters auxiliares (agora vivem na page)
   get informationsFormGroup(): FormGroup {
@@ -65,7 +61,7 @@ export class CourseFormComponent implements OnInit {
       return;
     }
 
-    const formData = this.courseForm.value;
+    const formData = this.courseFormFactory.createCoursePayload(this.courseForm.value);
 
     this.courseService.create(formData).subscribe({
       next: () => {

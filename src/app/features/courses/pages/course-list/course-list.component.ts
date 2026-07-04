@@ -6,6 +6,7 @@ import { Observable, of } from 'rxjs';
 import { CourseModel } from '../../../../shared/models/course-model';
 import { CourseCardFilterComponent } from '../../components/course-card-filter/course-card-filter.component';
 import { CourseService } from '../../../../core/services/course.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-course-list',
@@ -21,6 +22,7 @@ import { CourseService } from '../../../../core/services/course.service';
 export class CourseListComponent implements OnInit {
   public currentView: 'grid' | 'list' = 'grid'; // 'grid' como padrão
   private courseService = inject(CourseService);
+  private readonly router = inject(Router);
 
   // ==================================================
   // ============== CONTROLES MANUAIS =================
@@ -184,6 +186,7 @@ export class CourseListComponent implements OnInit {
   }
 
   loadCourses(): void {
+    this.currentView = 'grid';
     this.courseService.getAll().subscribe((courses) => {
       this.allCourses = courses;
       this.onSearchChanged('');
@@ -221,6 +224,10 @@ export class CourseListComponent implements OnInit {
   }
 
   navigateToCreateCourse(): void {
-    console.log('Navegando para a página de criação...');
+    this.router.navigate(['/courses/new']);
+  }
+
+  navigateToEditCourse(courseId: string): void {
+    this.router.navigate(['/courses', courseId, 'edit']);
   }
 }

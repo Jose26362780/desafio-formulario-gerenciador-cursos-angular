@@ -12,6 +12,10 @@
     </div>
   </header>
 
+  @if (modulesFormArray.errors?.['minArrayLength'] && modulesFormArray.touched) {
+    <p class="text-sm text-red-500">O curso precisa ter pelo menos 1 módulo.</p>
+  }
+
   @for (moduleCtrl of modulesFormArray.controls; track $index; let moduleIndex = $index) {
     <article class="module flex w-full flex-col gap-5" [formGroup]="getModuleGroup(moduleIndex)">
       <div class="flex w-full items-center justify-between">
@@ -61,6 +65,10 @@
       <div class="flex w-full flex-col gap-3">
         <div class="flex w-full items-center justify-between">
           <span class="label-uppercase">Aulas</span>
+
+          @if (getLessonsArray(moduleIndex).errors?.['minArrayLength'] && getLessonsArray(moduleIndex).touched) {
+            <span class="text-sm text-red-500">O módulo precisa ter pelo menos 1 aula.</span>
+          }
 
           <button
             type="button"

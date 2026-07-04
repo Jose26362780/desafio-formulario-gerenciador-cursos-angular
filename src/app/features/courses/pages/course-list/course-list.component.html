@@ -17,7 +17,11 @@
           }"
         >
           @for (course of courses; track course.id) {
-            <app-course-card [course]="course"></app-course-card>
+            <app-course-card
+              [course]="course"
+              (edit)="navigateToEditCourse($event)"
+              (delete)="onDeleteCourse($event)"
+            ></app-course-card>
           }
         </section>
       } @else if (allCourses.length === 0 && !isSearching) {

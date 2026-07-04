@@ -2,11 +2,11 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { CourseModel } from '../../../../shared/models/course-model';
 import { UpperCasePipe } from '@angular/common';
 import { ConfirmDeleteCouseDialogComponent } from '../../../../shared/components/confirm-delete-couse-dialog/confirm-delete-couse-dialog.component';
-import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-course-card',
-  imports: [UpperCasePipe, ConfirmDeleteCouseDialogComponent, RouterLink],
+  standalone: true,
+  imports: [UpperCasePipe, ConfirmDeleteCouseDialogComponent],
   templateUrl: './course-card.component.html',
 })
 export class CourseCardComponent {

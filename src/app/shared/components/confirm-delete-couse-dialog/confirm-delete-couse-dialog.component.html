@@ -39,12 +39,14 @@
     <!-- Actions -->
     <div class="flex items-center justify-center gap-3 w-full">
       <button
+        type="button"
         (click)="onCancel()"
         class="flex w-[91.65px] h-[43px] px-[20px] py-[10px] justify-center items-center gap-[8px] flex-shrink-0 rounded-[6px] border border-[var(--border)] bg-transparent text-[var(--text-medium)] font-semibold transition-colors hover:bg-[var(--surface-700)] hover:border-[var(--text-medium)]"
       >
         Cancelar
       </button>
       <button
+        type="button"
         (click)="onConfirmDelete()"
         class="w-[116px] h-[43px] flex items-center justify-center gap-[6px] rounded-[6px] border border-[var(--danger)] bg-[rgba(247,90,104,0.12)] text-[var(--danger)] font-semibold transition-all hover:bg-[rgba(247,90,104,0.25)] hover:border-[var(--danger)]"
       >

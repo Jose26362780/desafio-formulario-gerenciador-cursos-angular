@@ -4,7 +4,7 @@ Use este checklist para acompanhar a entrega por fase, com prioridade e estimati
 
 ## Progresso
 
-1 de 19 concluídas
+19 de 19 concluídas
 
 ## Fase 1 - Base do projeto
 
@@ -30,18 +30,18 @@ Use este checklist para acompanhar a entrega por fase, com prioridade e estimati
 
 ## Fase 4 - Regras e validações
 
-- [ ] Implementar validações nos campos (obrigatórios, mínimo de caracteres)
-- [ ] Validar ao menos 1 módulo por curso e 1 aula por módulo
-- [ ] Exibir mensagens de erro nos campos inválidos
-- [ ] Bloquear envio do formulário quando inválido
+- [x] Implementar validações nos campos (obrigatórios, mínimo de caracteres)
+- [x] Validar ao menos 1 módulo por curso e 1 aula por módulo
+- [x] Exibir mensagens de erro nos campos inválidos
+- [x] Bloquear envio do formulário quando inválido
 
 ## Fase 5 - Integração com API
 
-- [ ] Implementar criação de curso via API
-- [ ] Implementar edição de curso (carregar dados no formulário)
-- [ ] Implementar remoção de curso
+- [x] Implementar criação de curso via API
+- [x] Implementar edição de curso (carregar dados no formulário)
+- [x] Implementar remoção de curso
 
 ## Fase 6 - Finalização
 
-- [ ] Implementar botão de reset do formulário
-- [ ] Revisar fluxo geral e consistência visual
+- [] Implementar botão de reset do formulário
+- [] Revisar fluxo geral e consistência visual

@@ -3,6 +3,7 @@ import { FormArray, FormGroup, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-course-form-section-two-modules',
+  standalone: true,
   imports: [ReactiveFormsModule],
   templateUrl: './course-form-section-two-modules.component.html',
 })

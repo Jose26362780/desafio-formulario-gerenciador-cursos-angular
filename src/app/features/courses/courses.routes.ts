@@ -13,17 +13,17 @@ export const COURSE_ROUTES: Routes = [
       import('./pages/course-form/course-form.component').then((m) => m.CourseFormComponent),
   },
   {
-    path: ':id',
-    loadComponent: () =>
-      import('./pages/course-details/course-details.component').then(
-        (m) => m.CourseDetailsComponent,
-      ),
-  },
-  {
     path: ':id/edit',
     loadComponent: () =>
       import('./pages/course-form-edit/course-form-edit.component').then(
         (m) => m.CourseFormEditComponent,
+      ),
+  },
+  {
+    path: ':id',
+    loadComponent: () =>
+      import('./pages/course-details/course-details.component').then(
+        (m) => m.CourseDetailsComponent,
       ),
   },
 ];
