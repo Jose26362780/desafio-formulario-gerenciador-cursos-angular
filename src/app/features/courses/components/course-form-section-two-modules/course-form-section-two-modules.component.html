@@ -50,7 +50,7 @@
         />
 
         @if (moduleCtrl.get('name')?.touched && moduleCtrl.get('name')?.errors) {
-          <span class="text-sm text-red-500">
+          <span class="text-sm text-[var(--danger)]">
             @if (moduleCtrl.get('name')?.hasError('required')) {
               Nome do módulo é obrigatório
             }
@@ -66,8 +66,13 @@
         <div class="flex w-full items-center justify-between">
           <span class="label-uppercase">Aulas</span>
 
-          @if (getLessonsArray(moduleIndex).errors?.['minArrayLength'] && getLessonsArray(moduleIndex).touched) {
-            <span class="text-sm text-red-500">O módulo precisa ter pelo menos 1 aula.</span>
+          @if (
+            getLessonsArray(moduleIndex).errors?.['minArrayLength'] &&
+            getLessonsArray(moduleIndex).touched
+          ) {
+            <span class="text-sm text-[var(--danger)]"
+              >O módulo precisa ter pelo menos 1 aula.</span
+            >
           }
 
           <button
